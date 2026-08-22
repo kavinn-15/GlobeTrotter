@@ -15,19 +15,26 @@
 .profile-header .photo-circle { margin: 0; flex: 0 0 auto; }
 
 .profile-details {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    column-gap: 14px;
+    row-gap: 10px;
     font-size: 0.85rem;
     color: var(--ink-dim);
     min-width: 0;
+    align-items: baseline;
 }
 
-.profile-details div span:first-child {
-    color: var(--ink-faint);
-    margin-right: 6px;
+.profile-field {
+    display: contents;
 }
-.profile-details div span:last-child {
+
+.profile-field-label {
+    color: var(--ink-faint);
+    white-space: nowrap;
+    text-align: right;
+}
+.profile-field-value {
     color: var(--ink);
     font-weight: 500;
 }
@@ -62,5 +69,8 @@
 
 @media (max-width: 480px) {
     .profile-header { flex-direction: column; text-align: center; }
+    .profile-details { justify-items: center; }
+    .profile-field { display: flex; flex-direction: column; gap: 2px; }
+    .profile-field-label { text-align: center; }
     .mini-trip-grid { grid-template-columns: repeat(2, 1fr); }
 }

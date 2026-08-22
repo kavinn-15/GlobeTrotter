@@ -13,4 +13,6 @@ import java.util.List;
 public interface TripRepository extends JpaRepository<Trip, Long> {
 
     List<Trip> findByOwnerOrderByStartDateDesc(User owner);
+
+    List<Trip> findAllByOrderByCreatedAtDesc();
 }

@@ -15,26 +15,71 @@
     </div>
 
 
-    <div class="toolbar">
-        <form method="get" th:action="@{/activities}" style="display:flex; gap:10px; flex:1; align-items:center;">
-            <label class="sr-only" for="activity-query">Search activities or cities</label>
-            <input class="field search-field" id="activity-query" type="text" name="query"
-                   placeholder="Search activities or cities...." th:value="${query}" autocomplete="off">
-            <button class="btn-outline" type="button">Group by</button>
-            <button class="btn-outline" type="button">Filter</button>
-            <button class="btn-outline" type="button">Sort by...</button>
-        </form>
-    </div>
+    <form class="toolbar" method="get" th:action="@{/activities}">
+        <label class="sr-only" for="activity-query">Search activities or cities</label>
+        <input class="field search-field" id="activity-query" type="text" name="query"
+               placeholder="Search activities or cities...." th:value="${query}" autocomplete="off">
+
+        <label class="sr-only" for="activity-type">Filter by type</label>
+        <select class="field filter-select" id="activity-type" name="type" onchange="this.form.submit()">
+            <option value="">Type: all</option>
+            <option th:each="t : ${activityTypes}" th:value="${t}" th:text="${t}"
+                    th:selected="${t == selectedType}"></option>
+        </select>
+
+        <label class="sr-only" for="activity-cost">Filter by cost</label>
+        <select class="field filter-select" id="activity-cost" name="cost" onchange="this.form.submit()">
+            <option value="">Cost: all</option>
+            <option th:each="c : ${activityCosts}" th:value="${c}" th:text="${c}"
+                    th:selected="${c == selectedCost}"></option>
+        </select>
+
+        <label class="sr-only" for="activity-duration">Filter by duration</label>
+        <select class="field filter-select" id="activity-duration" name="duration" onchange="this.form.submit()">
+            <option value="">Duration: all</option>
+            <option th:each="d : ${activityDurations}" th:value="${d}" th:text="${d}"
+                    th:selected="${d == selectedDuration}"></option>
+        </select>
+
+        <button class="btn-outline" type="submit">Search</button>
+    </form>
 
     <div class="section-label">Results</div>
 
     <div class="results-list">
-        <a class="result-card" th:each="i : ${#numbers.sequence(1, 7)}"
-           th:href="@{/trips/view(option=${i})}">
-            Option and its details
-        </a>
+        <div class="result-card" th:each="a : ${results}">
+            <div class="result-photo" th:style="'background-image: url(' + ${a.imageUrl} + ')'"></div>
+            <div class="result-body">
+                <div class="result-top">
+                    <div>
+                        <div class="result-title" th:text="${a.name}"></div>
+                        <div class="result-city" th:text="${a.city}"></div>
+                    </div>
+                    <button class="add-toggle" type="button" onclick="toggleAdd(this)">+ Add</button>
+                </div>
+                <p class="result-description" th:text="${a.description}"></p>
+                <div class="result-tags">
+                    <span class="tag" th:text="${a.type}"></span>
+                    <span class="tag" th:text="${a.cost}"></span>
+                    <span class="tag" th:text="${a.duration}"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="no-results" th:if="${#lists.isEmpty(results)}">
+        <span th:if="${query}" th:text="'No activities found for \u201c' + ${query} + '\u201d. Try Paris, Santorini or Kyoto, or clear the filters.'"></span>
+        <span th:unless="${query}">No activities match those filters yet. Try Paris, Santorini or Kyoto.</span>
     </div>
 </div>
 <script th:src="@{/js/common.js}"></script>
+<script>
+    // Purely visual add/remove toggle for now — lets a traveler shortlist
+    // activities while browsing without wiring up a full itinerary backend.
+    function toggleAdd(button) {
+        var added = button.classList.toggle('added');
+        button.textContent = added ? '✓ Added' : '+ Add';
+    }
+</script>
 </body>
 </html>

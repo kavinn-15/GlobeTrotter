@@ -1,0 +1,155 @@
+/* verify-otp.css — Verify OTP screen, built on login.css/common.css tokens */
+
+.otp-card {
+    width: 420px;
+}
+
+/* ---------- animated lock icon with pulsing rings ---------- */
+
+.otp-icon-wrap {
+    position: relative;
+    width: 92px;
+    height: 92px;
+    margin: 0 auto 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.otp-icon {
+    position: relative;
+    z-index: 2;
+    width: 92px;
+    height: 92px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--teal);
+    background:
+        radial-gradient(circle at 35% 30%, rgba(46, 196, 182, 0.35), transparent 60%),
+        var(--glass-strong);
+    border: 2px solid var(--glass-border);
+    box-shadow: var(--shadow-soft);
+    animation: otp-icon-in 0.5s cubic-bezier(.2, .85, .3, 1.1);
+}
+
+@keyframes otp-icon-in {
+    from { opacity: 0; transform: scale(0.6) rotate(-8deg); }
+    to   { opacity: 1; transform: scale(1) rotate(0); }
+}
+
+.otp-ring {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 1.5px solid var(--teal);
+    opacity: 0;
+    animation: otp-pulse 2.6s ease-out infinite;
+}
+.otp-ring.r2 { animation-delay: 1.3s; }
+
+@keyframes otp-pulse {
+    0%   { transform: scale(0.75); opacity: 0.55; }
+    70%  { opacity: 0; }
+    100% { transform: scale(1.35); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .otp-ring { animation: none; display: none; }
+    .otp-icon { animation: none; }
+}
+
+/* ---------- copy ---------- */
+
+.otp-copy {
+    text-align: center;
+    color: var(--ink-dim);
+    font-size: 0.85rem;
+    line-height: 1.6;
+    margin: 0 4px 22px;
+}
+.otp-copy strong { color: var(--ink); }
+
+/* ---------- digit boxes ---------- */
+
+.otp-digits {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 18px;
+}
+
+.otp-digit {
+    width: 46px;
+    height: 56px;
+    text-align: center;
+    font-size: 1.4rem;
+    font-weight: 600;
+    font-family: var(--font-display);
+    background: var(--glass);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-sm);
+    color: var(--ink);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease, background 0.2s ease;
+}
+.otp-digit:hover { border-color: rgba(255, 255, 255, 0.28); }
+.otp-digit:focus {
+    outline: none;
+    border-color: var(--teal);
+    background: var(--glass-strong);
+    box-shadow: 0 0 0 4px rgba(46, 196, 182, 0.16);
+    transform: translateY(-2px);
+}
+.otp-digit.filled {
+    border-color: var(--teal);
+    box-shadow: 0 0 0 3px rgba(46, 196, 182, 0.12);
+}
+
+@media (max-width: 420px) {
+    .otp-digit { width: 13vw; min-width: 34px; height: 48px; font-size: 1.15rem; }
+    .otp-digits { gap: 6px; }
+}
+
+/* ---------- shake the whole card on a bad code ---------- */
+
+.otp-shake { animation: otp-card-shake 0.45s ease; }
+@keyframes otp-card-shake {
+    0%, 100% { transform: translateX(0); }
+    20% { transform: translateX(-8px); }
+    40% { transform: translateX(7px); }
+    60% { transform: translateX(-5px); }
+    80% { transform: translateX(3px); }
+}
+
+/* ---------- resend row ---------- */
+
+.otp-resend-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 14px;
+}
+
+.btn-link-resend {
+    background: none;
+    border: none;
+    color: var(--mint);
+    font-size: 0.85rem;
+    font-family: inherit;
+    cursor: pointer;
+    padding: 0;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(107, 241, 199, 0.4);
+    display: none;
+}
+.btn-link-resend:hover { color: var(--teal); border-color: var(--teal); }
+.btn-link-resend:disabled {
+    display: none;
+}
+
+#resendCountdown {
+    font-size: 0.8rem;
+    color: var(--ink-faint);
+}

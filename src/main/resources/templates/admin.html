@@ -15,6 +15,11 @@
     </div>
 
 
+    <div th:if="${adminSuccess}" class="alert alert-success" role="alert" th:text="${adminSuccess}"
+         style="margin: 0 22px 16px;"></div>
+    <div th:if="${adminError}" class="alert alert-error" role="alert" th:text="${adminError}"
+         style="margin: 0 22px 16px;"></div>
+
     <form class="toolbar" method="get" th:action="@{/admin}">
         <label class="sr-only" for="admin-search">Search users</label>
         <input class="field search-field" id="admin-search" type="text" placeholder="Search for .....">
@@ -30,6 +35,8 @@
            th:href="@{/admin(section='popular-cities')}">Popular cities</a>
         <a class="admin-tab" th:classappend="${section == 'popular-activities'} ? 'admin-tab-active'"
            th:href="@{/admin(section='popular-activities')}">Popular Activities</a>
+        <a class="admin-tab" th:classappend="${section == 'trips'} ? 'admin-tab-active'"
+           th:href="@{/admin(section='trips')}">Trips</a>
         <a class="admin-tab" th:classappend="${section == 'trends'} ? 'admin-tab-active'"
            th:href="@{/admin(section='trends')}">User Trends and analytics</a>
     </div>
@@ -40,6 +47,8 @@
                 <div class="admin-stat"><span class="admin-stat-value" th:text="${totalUsers}"></span><span class="admin-stat-label">Users</span></div>
                 <div class="admin-stat"><span class="admin-stat-value" th:text="${totalTrips}"></span><span class="admin-stat-label">Trips</span></div>
                 <div class="admin-stat"><span class="admin-stat-value" th:text="${totalPosts}"></span><span class="admin-stat-label">Community posts</span></div>
+                <div class="admin-stat"><span class="admin-stat-value" th:text="${activeUsers}"></span><span class="admin-stat-label">Active users</span></div>
+                <div class="admin-stat"><span class="admin-stat-value" th:text="${avgTripsPerUser}"></span><span class="admin-stat-label">Avg trips / user</span></div>
             </div>
 
             <!-- Manage Users -->
@@ -51,6 +60,7 @@
                         <th>Name</th>
                         <th>City</th>
                         <th>Admin</th>
+                        <th>Actions</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -59,6 +69,19 @@
                         <td th:text="${u.firstName} + ' ' + ${u.lastName}"></td>
                         <td th:text="${u.city}"></td>
                         <td th:text="${u.admin} ? 'Yes' : 'No'"></td>
+                        <td>
+                            <div class="admin-row-actions" th:if="${u.id != currentAdminId}">
+                                <form method="post" th:action="@{'/admin/users/' + ${u.id} + '/toggle-admin'}">
+                                    <button class="btn-tiny" type="submit"
+                                            th:text="${u.admin} ? 'Remove admin' : 'Make admin'"></button>
+                                </form>
+                                <form method="post" th:action="@{'/admin/users/' + ${u.id} + '/delete'}"
+                                      onsubmit="return confirm('Delete this user and all of their trips and posts? This cannot be undone.');">
+                                    <button class="btn-tiny btn-tiny-danger" type="submit">Delete</button>
+                                </form>
+                            </div>
+                            <span class="admin-empty" th:if="${u.id == currentAdminId}">You</span>
+                        </td>
                     </tr>
                     </tbody>
                 </table>
@@ -89,6 +112,38 @@
                 <div class="admin-empty" th:if="${#lists.isEmpty(popularActivities)}">No community activities tagged yet.</div>
             </div>
 
+            <!-- Trips -->
+            <div th:if="${section == 'trips'}">
+                <div class="admin-stats-row admin-stats-row-tight">
+                    <div class="admin-stat"><span class="admin-stat-value" th:text="${ongoingCount}"></span><span class="admin-stat-label">Ongoing</span></div>
+                    <div class="admin-stat"><span class="admin-stat-value" th:text="${upcomingCount}"></span><span class="admin-stat-label">Upcoming</span></div>
+                    <div class="admin-stat"><span class="admin-stat-value" th:text="${completedCount}"></span><span class="admin-stat-label">Completed</span></div>
+                </div>
+                <table class="admin-table">
+                    <thead>
+                    <tr>
+                        <th>Place</th>
+                        <th>Traveler</th>
+                        <th>Start</th>
+                        <th>End</th>
+                        <th>Status</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="t : ${allTrips}">
+                        <td th:text="${t.place}"></td>
+                        <td th:text="${t.owner != null} ? ${t.owner.username} : '—'"></td>
+                        <td th:text="${t.startDate != null} ? ${t.startDate} : '—'"></td>
+                        <td th:text="${t.endDate != null} ? ${t.endDate} : '—'"></td>
+                        <td>
+                            <span class="status-pill" th:classappend="'status-' + ${t.status}" th:text="${t.status}"></span>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="admin-empty" th:if="${#lists.isEmpty(allTrips)}">No trips have been created yet.</div>
+            </div>
+
             <!-- User Trends and analytics -->
             <div th:if="${section == 'trends'}">
                 <div class="trend-label">New registrations, last 6 months</div>
@@ -98,18 +153,28 @@
                         <span class="trend-month" th:text="${item.label}"></span>
                     </div>
                 </div>
+
+                <div class="trend-label trend-label-spaced">Trips created, last 6 months</div>
+                <div class="trend-chart">
+                    <div class="trend-col" th:each="item : ${tripsTrend}">
+                        <div class="trend-bar trend-bar-alt" th:style="'height: ' + ${item.percent} + '%'" th:title="${item.count}"></div>
+                        <span class="trend-month" th:text="${item.label}"></span>
+                    </div>
+                </div>
             </div>
         </div>
 
         <div class="admin-info">
-            <p><strong>Manage Users:</strong> This section is responsible for managing the users and their actions.
-                It gives the admin access to view all the trips made by the user, plus other functionalities.</p>
+            <p><strong>Manage Users:</strong> View every registered account, promote or demote admins, and remove
+                accounts that shouldn't have access.</p>
             <p><strong>Popular cities:</strong> Lists all the cities where users are visiting based on the current
                 trip trends.</p>
             <p><strong>Popular Activities:</strong> Lists all the popular activities users are tagging their
                 community posts with, based on current trends.</p>
-            <p><strong>User Trends and analytics:</strong> This section is majorly focused on providing analysis,
-                assessing various points and giving useful information to the admin.</p>
+            <p><strong>Trips:</strong> Every trip created on the platform, with its current status, plus a quick
+                breakdown of ongoing / upcoming / completed trips.</p>
+            <p><strong>User Trends and analytics:</strong> Registration and trip-creation trends over the last six
+                months, alongside overall engagement stats at the top of this panel.</p>
         </div>
     </div>
 </div>

@@ -48,10 +48,16 @@
     display: flex;
     gap: 14px;
     margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.admin-stats-row-tight {
+    margin-bottom: 22px;
 }
 
 .admin-stat {
-    flex: 1;
+    flex: 1 1 110px;
+    min-width: 110px;
     border: 1px solid var(--glass-border);
     border-radius: var(--radius-sm);
     padding: 14px 12px;
@@ -103,6 +109,55 @@
     font-size: 0.75rem;
     text-transform: uppercase;
     letter-spacing: 0.4px;
+}
+
+.admin-row-actions {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.btn-tiny {
+    border: 1px solid var(--glass-border);
+    background: var(--glass-strong);
+    color: var(--ink-dim);
+    border-radius: var(--radius-sm);
+    padding: 5px 9px;
+    font-size: 0.7rem;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.2s ease;
+}
+.btn-tiny:hover {
+    border-color: var(--teal);
+    color: var(--mint);
+}
+
+.btn-tiny-danger:hover {
+    border-color: var(--danger-strong);
+    color: var(--danger-strong);
+}
+
+.status-pill {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 0.7rem;
+    text-transform: capitalize;
+    border: 1px solid var(--glass-border);
+    color: var(--ink-dim);
+}
+.status-ongoing { color: var(--mint); border-color: var(--teal); }
+.status-upcoming { color: var(--gold); border-color: var(--gold); }
+.status-completed { color: var(--ink-faint); }
+
+.trend-label-spaced {
+    margin-top: 28px;
+}
+
+.trend-bar-alt {
+    background: linear-gradient(180deg, var(--sunset), var(--coral));
+    box-shadow: 0 0 14px rgba(255, 159, 28, 0.4);
 }
 
 .bar-row {

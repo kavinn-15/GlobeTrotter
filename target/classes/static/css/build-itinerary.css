@@ -38,11 +38,32 @@
 .itinerary-row {
     display: flex;
     gap: 12px;
+    flex-wrap: wrap;
 }
 
 .itinerary-row .field {
     margin-bottom: 0;
     flex: 1;
+}
+
+.date-range-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 2;
+    min-width: 240px;
+}
+.date-range-group .field {
+    flex: 1;
+    min-width: 0;
+    color-scheme: dark;
+}
+html[data-theme="light"] .date-range-group .field { color-scheme: light; }
+.date-range-sep {
+    font-size: 0.78rem;
+    color: var(--ink-faint);
+    white-space: nowrap;
+    flex: 0 0 auto;
 }
 
 .add-section-row { margin: 4px 22px 0; }

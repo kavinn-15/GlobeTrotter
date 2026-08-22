@@ -23,7 +23,13 @@
                 This can be anything like trave section, hotel or any other activity
             </p>
             <div class="itinerary-row">
-                <input class="field" type="text" placeholder="Date RAnge:  xxx to yyy">
+                <div class="date-range-group">
+                    <label class="sr-only" th:for="'startDate-' + ${i}">Start Date</label>
+                    <input class="field" type="date" th:id="'startDate-' + ${i}" name="sectionStartDate">
+                    <span class="date-range-sep">to</span>
+                    <label class="sr-only" th:for="'endDate-' + ${i}">End Date</label>
+                    <input class="field" type="date" th:id="'endDate-' + ${i}" name="sectionEndDate">
+                </div>
                 <input class="field" type="text" placeholder="Budget of this section">
             </div>
         </div>
@@ -54,7 +60,13 @@
                 '<p>All the necessary information about this section. ' +
                 'This can be anything like trave section, hotel or any other activity</p>' +
                 '<div class="itinerary-row">' +
-                '<input class="field" type="text" placeholder="Date RAnge:  xxx to yyy">' +
+                '<div class="date-range-group">' +
+                '<label class="sr-only" for="startDate-' + sectionCount + '">Start Date</label>' +
+                '<input class="field" type="date" id="startDate-' + sectionCount + '" name="sectionStartDate">' +
+                '<span class="date-range-sep">to</span>' +
+                '<label class="sr-only" for="endDate-' + sectionCount + '">End Date</label>' +
+                '<input class="field" type="date" id="endDate-' + sectionCount + '" name="sectionEndDate">' +
+                '</div>' +
                 '<input class="field" type="text" placeholder="Budget of this section">' +
                 '</div>';
 

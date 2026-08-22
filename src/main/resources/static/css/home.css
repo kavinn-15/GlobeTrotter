@@ -2,15 +2,17 @@
 
 .nav-row {
     display: flex;
-    gap: 10px;
+    gap: 20px;
     flex-wrap: wrap;
-    margin: 0 22px 18px;
+    margin: 22px 22px 32px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid var(--glass-border);
 }
 
-/* ---- hero banner: layered sunset + parallax skyline + plane ---- */
+/* ---- hero banner: real travel photo with a readable gradient overlay ---- */
 .banner {
     margin: 0 22px 20px;
-    height: 168px;
+    height: 200px;
     border: 1px solid var(--glass-border);
     border-radius: var(--radius-md);
     position: relative;
@@ -18,44 +20,24 @@
     display: flex;
     align-items: flex-end;
     justify-content: center;
-    padding-bottom: 14px;
-    font-size: 1.1rem;
+    padding-bottom: 16px;
+    font-size: 1.15rem;
     font-weight: 600;
     font-family: var(--font-display);
     color: var(--sand);
-    background: linear-gradient(180deg, #123a63 0%, #1f7a8c 45%, #ff9f1c 85%, #ff6b6b 100%);
+    background-size: cover;
+    background-position: center;
     box-shadow: var(--shadow-deep);
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.45);
+    transition: transform 0.4s ease;
 }
-
-.banner::before {
-    content: "";
-    position: absolute;
-    left: 50%;
-    bottom: 30px;
-    width: 90px;
-    height: 90px;
-    background: radial-gradient(circle, #ffe9b0, #ffd166 60%, transparent 72%);
-    border-radius: 50%;
-    transform: translateX(-50%);
-    filter: blur(0.5px);
-    animation: sun-pulse 4s ease-in-out infinite;
-}
-
-@keyframes sun-pulse {
-    0%, 100% { transform: translateX(-50%) scale(1); opacity: 0.95; }
-    50% { transform: translateX(-50%) scale(1.06); opacity: 1; }
-}
+.banner:hover { transform: scale(1.01); }
 
 .banner::after {
     content: "";
     position: absolute;
     inset: 0;
-    background-image:
-        linear-gradient(transparent 60%, rgba(10, 26, 48, 0.55) 100%),
-        polygon-mountains;
-    background:
-        linear-gradient(transparent 55%, rgba(10, 26, 48, 0.5) 100%);
+    background: linear-gradient(180deg, rgba(10, 26, 48, 0.05) 0%, rgba(10, 26, 48, 0.15) 45%, rgba(10, 26, 48, 0.75) 100%);
 }
 
 .banner-skyline {
@@ -67,7 +49,7 @@
     opacity: 0.85;
 }
 
-.banner span.banner-label {
+.banner .banner-label {
     position: relative;
     z-index: 2;
     letter-spacing: 0.4px;

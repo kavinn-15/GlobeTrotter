@@ -11,22 +11,32 @@
 <div class="app-frame">
     <div class="topbar">
         <a class="app-title-link" th:href="@{/home}">GlobalTrotter</a>
-        <a class="logout-link" th:href="@{/logout}">Logout</a>
+        <div class="topbar-actions">
+            <a class="btn-outline" th:href="@{/profile/edit}">Edit Profile</a>
+            <a class="icon-circle" th:href="@{/profile}" title="Profile">
+                <img th:if="${user.photoPath}" th:src="@{'/uploads/' + ${user.photoPath}}" alt="profile photo">
+                <img th:unless="${user.photoPath}" th:src="@{/images/default-avatar.svg}" alt="profile photo">
+            </a>
+            <a class="logout-link" th:href="@{/logout}">Logout</a>
+        </div>
     </div>
+
+    <div th:if="${profileSuccess}" class="alert alert-success" role="alert" th:text="${profileSuccess}"
+         style="margin: 16px 22px 0;"></div>
 
 
     <div class="profile-header">
         <div class="photo-circle">
             <img th:if="${user.photoPath}" th:src="@{'/uploads/' + ${user.photoPath}}" alt="profile photo">
-            <span th:unless="${user.photoPath}">Image of the User</span>
+            <img th:unless="${user.photoPath}" th:src="@{/images/default-avatar.svg}" alt="profile photo">
         </div>
         <div class="profile-details">
-            <div><span>Username:</span> <span th:text="${user.username}"></span></div>
-            <div><span>Name:</span> <span th:text="${user.firstName} + ' ' + ${user.lastName}"></span></div>
-            <div><span>Email:</span> <span th:text="${user.email}"></span></div>
-            <div><span>Phone:</span> <span th:text="${user.phoneNumber}"></span></div>
-            <div><span>City:</span> <span th:text="${user.city}"></span></div>
-            <div><span>Country:</span> <span th:text="${user.country}"></span></div>
+            <div class="profile-field"><span class="profile-field-label">Username:</span> <span class="profile-field-value" th:text="${user.username}"></span></div>
+            <div class="profile-field"><span class="profile-field-label">Name:</span> <span class="profile-field-value" th:text="${user.firstName} + ' ' + ${user.lastName}"></span></div>
+            <div class="profile-field"><span class="profile-field-label">Email:</span> <span class="profile-field-value" th:text="${user.email}"></span></div>
+            <div class="profile-field"><span class="profile-field-label">Phone:</span> <span class="profile-field-value" th:text="${user.phoneNumber}"></span></div>
+            <div class="profile-field"><span class="profile-field-label">City:</span> <span class="profile-field-value" th:text="${user.city}"></span></div>
+            <div class="profile-field"><span class="profile-field-label">Country:</span> <span class="profile-field-value" th:text="${user.country}"></span></div>
         </div>
     </div>
 

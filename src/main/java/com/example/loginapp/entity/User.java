@@ -64,6 +64,25 @@ public class User {
     /** Set automatically the first time this row is persisted. */
     private LocalDateTime createdAt;
 
+    // ---------------------------------------------------------------
+    // Forgot Password / OTP verification (Screens: Forgot Password,
+    // Verify OTP, Reset Password). Not shown anywhere in the UI other
+    // than driving that flow.
+    // ---------------------------------------------------------------
+
+    /** The most recently generated one-time code, cleared once used. */
+    private String resetOtp;
+
+    /** Moment after which {@link #resetOtp} is no longer valid. */
+    private LocalDateTime resetOtpExpiry;
+
+    /** Number of consecutive failed OTP attempts for the current code. */
+    private int resetOtpAttempts = 0;
+
+    /** True once the OTP has been correctly verified; required before
+     *  a new password may be set, then cleared immediately after. */
+    private boolean resetVerified = false;
+
     public User() {
     }
 
@@ -176,5 +195,37 @@ public class User {
 
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public String getResetOtp() {
+        return resetOtp;
+    }
+
+    public void setResetOtp(String resetOtp) {
+        this.resetOtp = resetOtp;
+    }
+
+    public LocalDateTime getResetOtpExpiry() {
+        return resetOtpExpiry;
+    }
+
+    public void setResetOtpExpiry(LocalDateTime resetOtpExpiry) {
+        this.resetOtpExpiry = resetOtpExpiry;
+    }
+
+    public int getResetOtpAttempts() {
+        return resetOtpAttempts;
+    }
+
+    public void setResetOtpAttempts(int resetOtpAttempts) {
+        this.resetOtpAttempts = resetOtpAttempts;
+    }
+
+    public boolean isResetVerified() {
+        return resetVerified;
+    }
+
+    public void setResetVerified(boolean resetVerified) {
+        this.resetVerified = resetVerified;
     }
 }

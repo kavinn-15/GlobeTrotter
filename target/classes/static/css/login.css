@@ -15,6 +15,22 @@
     margin-bottom: 0;
 }
 
+.forgot-row {
+    text-align: right;
+    margin: -6px 0 4px;
+}
+.forgot-row a {
+    font-size: 0.8rem;
+    color: var(--ink-faint);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: color 0.2s ease, border-color 0.2s ease;
+}
+.forgot-row a:hover {
+    color: var(--mint);
+    border-color: rgba(107, 241, 199, 0.4);
+}
+
 .login-brand {
     text-align: center;
     font-family: var(--font-display);

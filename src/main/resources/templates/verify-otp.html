@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify Code</title>
+    <link rel="stylesheet" th:href="@{/css/common.css}">
+    <link rel="stylesheet" th:href="@{/css/login.css}">
+    <link rel="stylesheet" th:href="@{/css/verify-otp.css}">
+</head>
+<body>
+<div>
+
+    <div class="card login-card otp-card" th:classappend="${otpError} ? 'otp-shake' : ''">
+
+        <div class="otp-icon-wrap" aria-hidden="true">
+            <span class="otp-ring r1"></span>
+            <span class="otp-ring r2"></span>
+            <div class="otp-icon">
+                <svg viewBox="0 0 24 24" width="36" height="36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="4" y="10" width="16" height="10" rx="2" stroke="currentColor" stroke-width="1.4"/>
+                    <path d="M8 10V7a4 4 0 0 1 8 0v3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+                    <circle cx="12" cy="15" r="1.4" fill="currentColor"/>
+                </svg>
+            </div>
+        </div>
+
+        <div class="screen-title">Verify Your Code</div>
+
+        <p class="otp-copy">
+            Enter the 6-digit code we sent to
+            <strong th:text="${maskedEmail}">ja***@example.com</strong>.
+            <span th:if="${otpExpiryMinutes}">It expires in <span th:text="${otpExpiryMinutes}">10</span> minutes.</span>
+        </p>
+
+        <div th:if="${otpSentMessage}" class="alert alert-success" role="status" th:text="${otpSentMessage}"></div>
+        <div th:if="${otpError}" class="alert alert-error" role="alert" th:text="${otpError}"></div>
+
+        <form th:action="@{/verify-otp}" method="post" id="otpForm" novalidate>
+            <input type="hidden" name="otp" id="otpCombined">
+
+            <div class="otp-digits" id="otpDigits">
+                <label class="sr-only" for="d1">Digit 1</label>
+                <input class="otp-digit" id="d1" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1" autocomplete="one-time-code" autofocus>
+                <label class="sr-only" for="d2">Digit 2</label>
+                <input class="otp-digit" id="d2" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1">
+                <label class="sr-only" for="d3">Digit 3</label>
+                <input class="otp-digit" id="d3" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1">
+                <label class="sr-only" for="d4">Digit 4</label>
+                <input class="otp-digit" id="d4" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1">
+                <label class="sr-only" for="d5">Digit 5</label>
+                <input class="otp-digit" id="d5" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1">
+                <label class="sr-only" for="d6">Digit 6</label>
+                <input class="otp-digit" id="d6" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1">
+            </div>
+
+            <button class="btn" type="submit">Verify Code</button>
+        </form>
+
+        <form th:action="@{/verify-otp/resend}" method="post" id="resendForm">
+            <div class="link-row otp-resend-row">
+                <span id="resendCountdown">Resend code in <span id="resendSeconds">30</span>s</span>
+                <button type="submit" class="btn-link-resend" id="resendBtn" disabled>Resend code</button>
+            </div>
+        </form>
+
+        <div class="link-row">
+            <a th:href="@{/forgot-password}">&larr; Use a different email</a>
+        </div>
+    </div>
+</div>
+<script th:src="@{/js/common.js}"></script>
+<script th:src="@{/js/verify-otp.js}"></script>
+</body>
+</html>

@@ -17,7 +17,7 @@
 
     <div class="panel-title">Plan a new trip</div>
 
-    <form th:action="@{/trips/new}" method="post">
+    <form th:action="@{/trips/new}" method="post" id="create-trip-form">
         <div class="form-panel">
             <div class="form-row">
                 <label for="place">Select a Place :</label>
@@ -26,17 +26,23 @@
             </div>
             <div class="form-row">
                 <label>Start Date:</label>
-                <input class="field" type="date" name="startDate">
+                <input class="field" id="startDate" type="date" name="startDate">
             </div>
             <div class="form-row">
                 <label>End Date:</label>
-                <input class="field" type="date" name="endDate">
+                <input class="field" id="endDate" type="date" name="endDate">
             </div>
         </div>
 
         <div class="section-label">Suggestion for Places to Visit/Activites to preform</div>
         <div class="suggestion-grid">
-            <a class="tile" th:each="i : ${#numbers.sequence(1, 6)}" th:href="@{/activities}"></a>
+            <a class="tile tile-photo" th:each="place : ${suggestedPlaces}" th:href="@{/activities}"
+               th:style="'background-image: url(' + ${place.imageUrl} + ')'">
+                <span class="tile-caption">
+                    <span class="tile-caption-title" th:text="${place.name}">Place</span>
+                    <span class="tile-caption-sub" th:text="${place.subtitle}">Country</span>
+                </span>
+            </a>
         </div>
 
         <div class="submit-row">
@@ -45,5 +51,33 @@
     </form>
 </div>
 <script th:src="@{/js/common.js}"></script>
+<script>
+    // As soon as both Start Date and End Date are filled in, move straight
+    // on to Build Itinerary without waiting for the button to be clicked.
+    (function () {
+        var form = document.getElementById('create-trip-form');
+        var startInput = document.getElementById('startDate');
+        var endInput = document.getElementById('endDate');
+        var submitted = false;
+
+        function maybeAutoAdvance() {
+            if (submitted) return;
+            var start = startInput.value;
+            var end = endInput.value;
+            if (!start || !end) return;
+
+            if (end < start) {
+                alert('End Date cannot be before Start Date.');
+                return;
+            }
+
+            submitted = true;
+            form.submit();
+        }
+
+        startInput.addEventListener('change', maybeAutoAdvance);
+        endInput.addEventListener('change', maybeAutoAdvance);
+    })();
+</script>
 </body>
 </html>

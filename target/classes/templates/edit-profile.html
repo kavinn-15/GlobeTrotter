@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Profile</title>
+    <link rel="stylesheet" th:href="@{/css/common.css}">
+    <link rel="stylesheet" th:href="@{/css/register.css}">
+    <link rel="stylesheet" th:href="@{/css/edit-profile.css}">
+</head>
+<body>
+<div>
+
+    <div class="card register-card">
+
+        <label class="photo-upload-label">
+            <div class="photo-circle">
+                <img th:if="${user.photoPath}" th:src="@{'/uploads/' + ${user.photoPath}}" alt="profile photo">
+                <span th:unless="${user.photoPath}">Photo</span>
+            </div>
+            <input type="file" name="photo" accept="image/*" form="editProfileForm">
+        </label>
+        <div class="photo-hint">(optional) click the circle above to change your profile photo</div>
+
+        <div th:if="${editError}" class="alert alert-error" role="alert" th:text="${editError}"></div>
+
+        <form id="editProfileForm" th:action="@{/profile/edit}" th:object="${user}" method="post" enctype="multipart/form-data">
+
+            <div class="inner-panel">
+
+                <div class="row">
+                    <label class="sr-only" for="username">Username</label>
+                    <input class="field" id="username" type="text" th:field="*{username}" readonly disabled>
+                </div>
+                <div class="field-note">Username can't be changed.</div>
+
+                <div class="row">
+                    <label class="sr-only" for="firstName">First Name</label>
+                    <input class="field" id="firstName" type="text" name="firstName" th:value="${user.firstName}" placeholder="First Name" autocomplete="given-name" required>
+                    <label class="sr-only" for="lastName">Last Name</label>
+                    <input class="field" id="lastName" type="text" name="lastName" th:value="${user.lastName}" placeholder="Last Name" autocomplete="family-name" required>
+                </div>
+
+                <div class="row">
+                    <label class="sr-only" for="email">Email Address</label>
+                    <input class="field" id="email" type="email" name="email" th:value="${user.email}" placeholder="Email Address" autocomplete="email" required>
+                    <label class="sr-only" for="phoneNumber">Phone Number</label>
+                    <input class="field" id="phoneNumber" type="tel" name="phoneNumber" th:value="${user.phoneNumber}" placeholder="Phone Number" autocomplete="tel">
+                </div>
+
+                <div class="row">
+                    <label class="sr-only" for="city">City</label>
+                    <input class="field" id="city" type="text" name="city" th:value="${user.city}" placeholder="City" autocomplete="address-level2">
+                    <label class="sr-only" for="country">Country</label>
+                    <input class="field" id="country" type="text" name="country" th:value="${user.country}" placeholder="Country" autocomplete="country-name">
+                </div>
+
+                <label class="sr-only" for="additionalInfo">Additional Information</label>
+                <textarea class="field" id="additionalInfo" name="additionalInfo" placeholder="Additional Information ...." th:text="${user.additionalInfo}"></textarea>
+            </div>
+
+            <button class="btn" type="submit">Save Changes</button>
+        </form>
+
+        <div class="link-row">
+            <a th:href="@{/profile}">Cancel and go back to profile</a>
+        </div>
+    </div>
+</div>
+<script th:src="@{/js/common.js}"></script>
+</body>
+</html>
