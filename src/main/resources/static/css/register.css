@@ -1,47 +1,998 @@
-/* ===================================================================
-   register.css
-   Screen 2 (Registration) only. Shared atoms (.card, .photo-circle,
-   .field, .btn, .alert, .field-error, ...) live in common.css.
-   =================================================================== */
+/* ============================================================
+   GLOBETROTTER - REGISTRATION PAGE
+   Purple / Lavender Travel Theme
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap');
+
+/* ================= ROOT ================= */
+
+:root {
+
+    --purple: #6237d9;
+    --purple-dark: #4721ad;
+
+    --lavender: #f3efff;
+    --lavender-light: #faf9ff;
+
+    --navy: #171735;
+    --text: #55566f;
+    --muted: #85869a;
+
+    --border: #e7e3f1;
+
+    --white: #ffffff;
+
+}
+
+
+/* ================= RESET ================= */
+
+* {
+    box-sizing: border-box;
+}
+
+
+body {
+
+    margin: 0;
+
+    font-family: 'Manrope', sans-serif;
+
+    color: var(--navy);
+
+    background:
+        radial-gradient(
+            circle at 10% 10%,
+            #eee7ff 0,
+            transparent 32%
+        ),
+        #faf9ff;
+
+}
+
+
+/* ================= MAIN PAGE ================= */
+
+.auth-page {
+
+    min-height: 100vh;
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+}
+
+
+/* ============================================================
+   LEFT TRAVEL PANEL
+   ============================================================ */
+
+.travel-panel {
+
+    position: relative;
+
+    min-height: 100vh;
+
+    padding: 42px 7vw;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at 20% 20%,
+            rgba(128, 92, 231, .16),
+            transparent 35%
+        ),
+        linear-gradient(
+            145deg,
+            #f7f3ff 0%,
+            #eee7ff 100%
+        );
+
+}
+
+
+/* ================= BRAND ================= */
+
+.brand {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    color: var(--purple);
+
+    font-size: 25px;
+
+    font-weight: 800;
+
+    letter-spacing: -1px;
+
+}
+
+
+.brand-icon {
+
+    width: 45px;
+
+    height: 45px;
+
+    display: grid;
+
+    place-items: center;
+
+    border: 2px solid var(--purple);
+
+    border-radius: 50%;
+
+    font-size: 21px;
+
+    transform: rotate(-10deg);
+
+}
+
+
+/* ================= TRAVEL TEXT ================= */
+
+.travel-content {
+
+    position: relative;
+
+    z-index: 5;
+
+    max-width: 570px;
+
+    margin-top: 18vh;
+
+}
+
+
+.eyebrow {
+
+    display: inline-block;
+
+    color: var(--purple);
+
+    font-size: 12px;
+
+    font-weight: 800;
+
+    letter-spacing: 1.8px;
+
+}
+
+
+.travel-content h1 {
+
+    margin: 18px 0;
+
+    font-size: clamp(44px, 5vw, 70px);
+
+    line-height: 1.05;
+
+    letter-spacing: -3px;
+
+}
+
+
+.travel-content p {
+
+    max-width: 500px;
+
+    color: #696a82;
+
+    font-size: 17px;
+
+    line-height: 1.8;
+
+}
+
+
+/* ============================================================
+   TRAVEL ILLUSTRATION
+   ============================================================ */
+
+.travel-scene {
+
+    position: absolute;
+
+    left: 0;
+
+    right: 0;
+
+    bottom: 0;
+
+    height: 35%;
+
+}
+
+
+/* Sun */
+
+.sun {
+
+    position: absolute;
+
+    top: 5%;
+
+    right: 18%;
+
+    width: 105px;
+
+    height: 105px;
+
+    border-radius: 50%;
+
+    background: #e5d9ff;
+
+}
+
+
+/* Clouds */
+
+.cloud {
+
+    position: absolute;
+
+    width: 115px;
+
+    height: 28px;
+
+    border-radius: 50px;
+
+    background: rgba(255, 255, 255, .8);
+
+}
+
+
+.cloud::before,
+.cloud::after {
+
+    content: "";
+
+    position: absolute;
+
+    bottom: 3px;
+
+    border-radius: 50%;
+
+    background: inherit;
+
+}
+
+
+.cloud::before {
+
+    left: 20px;
+
+    width: 42px;
+
+    height: 42px;
+
+}
+
+
+.cloud::after {
+
+    left: 55px;
+
+    width: 32px;
+
+    height: 32px;
+
+}
+
+
+.cloud-one {
+
+    top: 15%;
+
+    left: 10%;
+
+}
+
+
+.cloud-two {
+
+    top: 30%;
+
+    right: 7%;
+
+    transform: scale(.7);
+
+}
+
+
+/* Mountains */
+
+.mountain {
+
+    position: absolute;
+
+    bottom: -28%;
+
+    width: 60%;
+
+    height: 95%;
+
+    clip-path: polygon(
+        50% 0,
+        100% 100%,
+        0 100%
+    );
+
+}
+
+
+.mountain-back {
+
+    left: -8%;
+
+    background: #ded5f5;
+
+}
+
+
+.mountain-front {
+
+    right: -12%;
+
+    background: #d2c6ef;
+
+    transform: scale(.85);
+
+}
+
+
+/* Plane */
+
+.plane {
+
+    position: absolute;
+
+    top: 3%;
+
+    left: 52%;
+
+    color: var(--purple);
+
+    font-size: 34px;
+
+    transform: rotate(-25deg);
+
+}
+
+
+/* Route */
+
+.route-line {
+
+    position: absolute;
+
+    width: 220px;
+
+    height: 80px;
+
+    left: 42%;
+
+    top: 12%;
+
+    border-top: 2px dashed rgba(98, 55, 217, .25);
+
+    border-radius: 50%;
+
+    transform: rotate(-10deg);
+
+}
+
+
+/* ============================================================
+   RIGHT FORM PANEL
+   ============================================================ */
+
+.form-panel {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 45px;
+
+}
+
+
+/* ================= CARD ================= */
 
 .register-card {
-    width: 640px;
-    max-width: 92vw;
+
+    width: min(100%, 600px);
+
+    max-height: 94vh;
+
+    overflow-y: auto;
+
+    padding: 42px;
+
+    background: rgba(255, 255, 255, .96);
+
+    border: 1px solid var(--border);
+
+    border-radius: 28px;
+
+    box-shadow:
+        0 25px 75px rgba(67, 42, 130, .11);
+
 }
+
+
+/* ================= HEADING ================= */
+
+.form-heading {
+
+    margin-bottom: 25px;
+
+}
+
+
+.mini-label {
+
+    color: var(--purple);
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    letter-spacing: 1.6px;
+
+}
+
+
+.form-heading h2 {
+
+    margin: 8px 0 7px;
+
+    font-size: 31px;
+
+    letter-spacing: -1.4px;
+
+}
+
+
+.form-heading p {
+
+    margin: 0;
+
+    color: var(--muted);
+
+    font-size: 14px;
+
+    line-height: 1.6;
+
+}
+
+
+/* ================= MOBILE BRAND ================= */
+
+.mobile-brand {
+
+    display: none;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 10px;
+
+    margin-bottom: 30px;
+
+    color: var(--purple);
+
+    font-size: 23px;
+
+    font-weight: 800;
+
+}
+
+
+/* ============================================================
+   PROFILE PHOTO
+   ============================================================ */
+
+.profile-upload {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    margin-bottom: 25px;
+
+    color: var(--muted);
+
+    font-size: 12px;
+
+}
+
 
 .photo-upload-label {
+
     cursor: pointer;
-    text-align: center;
-    display: block;
+
 }
 
-.photo-upload-label input[type="file"] {
+
+.photo-upload-label input {
+
     display: none;
+
 }
 
-.photo-hint {
-    text-align: center;
-    font-size: 0.75rem;
-    color: #8a8a8a;
-    margin: -16px 0 20px;
-}
 
-.inner-panel {
-    border: 1px solid #6a6a6a;
-    border-radius: 12px;
-    padding: 20px;
-}
+.photo-circle {
 
-.row {
+    width: 70px;
+
+    height: 70px;
+
     display: flex;
-    gap: 16px;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 2px;
+
+    border: 2px dashed #bba8ec;
+
+    border-radius: 50%;
+
+    background: var(--lavender);
+
+    color: var(--purple);
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    transition: .2s ease;
+
 }
 
-.row .field {
-    flex: 1;
+
+.photo-circle:hover {
+
+    background: #e9e0ff;
+
+    transform: scale(1.04);
+
 }
 
-textarea.field {
+
+.camera-icon {
+
+    font-size: 20px;
+
+}
+
+
+/* ============================================================
+   FORM GRID
+   ============================================================ */
+
+.form-grid {
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 17px;
+
+}
+
+
+.form-group {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 7px;
+
+}
+
+
+.form-group label {
+
+    color: var(--navy);
+
+    font-size: 12px;
+
+    font-weight: 800;
+
+}
+
+
+/* ================= INPUT ================= */
+
+.input-wrapper {
+
+    min-height: 51px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    padding: 0 13px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 14px;
+
+    background: white;
+
+    transition: .2s ease;
+
+}
+
+
+.input-wrapper:focus-within {
+
+    border-color: #a28be9;
+
+    box-shadow:
+        0 0 0 4px rgba(98, 55, 217, .08);
+
+}
+
+
+.input-icon {
+
+    color: var(--purple);
+
+    font-size: 14px;
+
+}
+
+
+.field {
+
+    width: 100%;
+
+    min-width: 0;
+
+    border: none;
+
+    outline: none;
+
+    background: transparent;
+
+    color: var(--navy);
+
+    font-family: inherit;
+
+    font-size: 13px;
+
+}
+
+
+.field::placeholder {
+
+    color: #aaa9ba;
+
+}
+
+
+/* ================= PASSWORD ================= */
+
+.password-toggle {
+
+    border: 0;
+
+    background: transparent;
+
+    color: var(--purple);
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    cursor: pointer;
+
+}
+
+
+/* ================= TEXTAREA ================= */
+
+.full-width {
+
+    margin-top: 18px;
+
+}
+
+
+.textarea-field {
+
+    min-height: 95px;
+
+    padding: 14px;
+
     resize: vertical;
-    min-height: 100px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 14px;
+
 }
+
+
+.textarea-field:focus {
+
+    border-color: #a28be9;
+
+    box-shadow:
+        0 0 0 4px rgba(98, 55, 217, .08);
+
+}
+
+
+/* ============================================================
+   VALIDATION
+   ============================================================ */
+
+.field-error {
+
+    color: #d64d67;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+}
+
+
+.alert {
+
+    margin-bottom: 18px;
+
+    padding: 12px 14px;
+
+    border-radius: 12px;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+}
+
+
+.alert-error {
+
+    color: #a92f49;
+
+    background: #fff0f3;
+
+    border: 1px solid #ffd5de;
+
+}
+
+
+/* ============================================================
+   TERMS
+   ============================================================ */
+
+.terms {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 8px;
+
+    margin-top: 20px;
+
+    color: #777891;
+
+    font-size: 11px;
+
+    line-height: 1.5;
+
+}
+
+
+.terms input {
+
+    margin-top: 3px;
+
+    accent-color: var(--purple);
+
+}
+
+
+/* ============================================================
+   REGISTER BUTTON
+   ============================================================ */
+
+.register-btn {
+
+    width: 100%;
+
+    min-height: 54px;
+
+    margin-top: 20px;
+
+    border: none;
+
+    border-radius: 15px;
+
+    background:
+        linear-gradient(
+            100deg,
+            #5d32d2,
+            #7448e5
+        );
+
+    color: white;
+
+    font-family: inherit;
+
+    font-size: 13px;
+
+    font-weight: 800;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 12px 28px rgba(98, 55, 217, .22);
+
+    transition: .2s ease;
+
+}
+
+
+.register-btn:hover {
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 16px 32px rgba(98, 55, 217, .28);
+
+}
+
+
+.register-btn span {
+
+    margin-left: 10px;
+
+    font-size: 18px;
+
+}
+
+
+/* ============================================================
+   LOGIN LINK
+   ============================================================ */
+
+.login-link {
+
+    margin-top: 22px;
+
+    text-align: center;
+
+    color: #777891;
+
+    font-size: 12px;
+
+}
+
+
+.login-link a {
+
+    color: var(--purple);
+
+    font-weight: 800;
+
+    text-decoration: none;
+
+}
+
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 1000px) {
+
+    .auth-page {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .travel-panel {
+
+        display: none;
+
+    }
+
+
+    .form-panel {
+
+        min-height: 100vh;
+
+        padding: 25px;
+
+    }
+
+
+    .mobile-brand {
+
+        display: flex;
+
+    }
+
+}
+
+
+@media (max-width: 620px) {
+
+    .form-panel {
+
+        padding: 12px;
+
+    }
+
+
+    .register-card {
+
+        padding: 27px 20px;
+
+        border-radius: 22px;
+
+        max-height: none;
+
+    }
+
+
+    .form-grid {
+
+        grid-template-columns: 1fr;
+
+        gap: 15px;
+
+    }
+
+
+    .full-width {
+
+        margin-top: 15px;
+
+    }
+
+
+    .form-heading h2 {
+
+        font-size: 27px;
+
+    }
+
+
+    .profile-upload {
+
+        margin-bottom: 20px;
+
+    }
+
+}
+
