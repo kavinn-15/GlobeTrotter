@@ -1,450 +1,74 @@
-```html
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Join GlobeTrotter</title>
-
-    <link rel="stylesheet" href="../static/css/common.css" th:href="@{/css/common.css}">
-    <link rel="stylesheet" href="../static/css/register.css" th:href="@{/css/register.css}">
+    <title>Register</title>
+    <link rel="stylesheet" th:href="@{/css/common.css}">
+    <link rel="stylesheet" th:href="@{/css/register.css}">
 </head>
-
 <body>
-
-<div class="auth-page">
-
-    <!-- ================= LEFT TRAVEL PANEL ================= -->
-    <section class="travel-panel">
-
-        <div class="brand">
-            <div class="brand-icon">✈</div>
-            <span>GlobeTrotter</span>
-        </div>
-
-        <div class="travel-content">
-
-            <span class="eyebrow">
-                DISCOVER • PLAN • EXPLORE
-            </span>
-
-            <h1>
-                Your next<br>
-                adventure awaits.
-            </h1>
-
-            <p>
-                Create personalized trips, discover amazing destinations,
-                and organize every part of your journey in one place.
-            </p>
-
-        </div>
-
-        <!-- Decorative travel illustration -->
-        <div class="travel-scene">
-
-            <div class="sun"></div>
-
-            <div class="cloud cloud-one"></div>
-            <div class="cloud cloud-two"></div>
-
-            <div class="mountain mountain-back"></div>
-            <div class="mountain mountain-front"></div>
-
-            <div class="plane">✈</div>
-
-            <div class="route-line"></div>
-
-        </div>
-
-    </section>
-
-
-    <!-- ================= REGISTER PANEL ================= -->
-    <main class="form-panel">
-
-        <div class="register-card">
-
-            <!-- Mobile brand -->
-            <div class="mobile-brand">
-                <div class="brand-icon">✈</div>
-                <span>GlobeTrotter</span>
-            </div>
-
-
-            <!-- Heading -->
-            <div class="form-heading">
-
-                <span class="mini-label">
-                    START EXPLORING 🌍
-                </span>
-
-                <h2>Create your account</h2>
-
-                <p>
-                    Join GlobeTrotter and start planning your next adventure.
-                </p>
-
-            </div>
-
-
-            <!-- Profile Photo -->
-            <div class="profile-upload">
-
-                <label class="photo-upload-label">
-
-                    <div class="photo-circle">
-
-                        <span class="camera-icon">📷</span>
-
-                        <span>Photo</span>
-
-                    </div>
-
-                    <input
-                        type="file"
-                        name="photo"
-                        accept="image/*"
-                        form="registerForm"
-                    >
-
-                </label>
-
-                <span>
-                    Add a profile photo
-                    <small>(optional)</small>
-                </span>
-
-            </div>
-
-
-            <!-- Backend error -->
-            <div
-                th:if="${registerError}"
-                class="alert alert-error"
-                th:text="${registerError}">
-            </div>
-
-
-            <!-- ================= FORM ================= -->
-            <form
-                id="registerForm"
-                th:action="@{/register}"
-                th:object="${user}"
-                method="post"
-                enctype="multipart/form-data"
-            >
-
-                <div class="form-grid">
-
-
-                    <!-- Username -->
-                    <div class="form-group">
-
-                        <label>Username</label>
-
-                        <div class="input-wrapper">
-
-                            <span class="input-icon">👤</span>
-
-                            <input
-                                class="field"
-                                type="text"
-                                th:field="*{username}"
-                                placeholder="Choose a username"
-                                required
-                            >
-
-                        </div>
-
-                        <div
-                            class="field-error"
-                            th:if="${#fields.hasErrors('username')}"
-                            th:errors="*{username}">
-                        </div>
-
-                    </div>
-
-
-                    <!-- Password -->
-                    <div class="form-group">
-
-                        <label>Password</label>
-
-                        <div class="input-wrapper">
-
-                            <span class="input-icon">🔒</span>
-
-                            <input
-                                class="field password-field"
-                                id="password"
-                                type="password"
-                                th:field="*{password}"
-                                placeholder="Create a password"
-                                required
-                            >
-
-                            <button
-                                type="button"
-                                class="password-toggle"
-                                onclick="togglePassword('password', this)"
-                            >
-                                Show
-                            </button>
-
-                        </div>
-
-                        <div
-                            class="field-error"
-                            th:if="${#fields.hasErrors('password')}"
-                            th:errors="*{password}">
-                        </div>
-
-                    </div>
-
-
-                    <!-- First Name -->
-                    <div class="form-group">
-
-                        <label>First Name</label>
-
-                        <div class="input-wrapper">
-
-                            <span class="input-icon">✨</span>
-
-                            <input
-                                class="field"
-                                type="text"
-                                th:field="*{firstName}"
-                                placeholder="Your first name"
-                                required
-                            >
-
-                        </div>
-
-                        <div
-                            class="field-error"
-                            th:if="${#fields.hasErrors('firstName')}"
-                            th:errors="*{firstName}">
-                        </div>
-
-                    </div>
-
-
-                    <!-- Last Name -->
-                    <div class="form-group">
-
-                        <label>Last Name</label>
-
-                        <div class="input-wrapper">
-
-                            <span class="input-icon">✨</span>
-
-                            <input
-                                class="field"
-                                type="text"
-                                th:field="*{lastName}"
-                                placeholder="Your last name"
-                                required
-                            >
-
-                        </div>
-
-                        <div
-                            class="field-error"
-                            th:if="${#fields.hasErrors('lastName')}"
-                            th:errors="*{lastName}">
-                        </div>
-
-                    </div>
-
-
-                    <!-- Email -->
-                    <div class="form-group">
-
-                        <label>Email Address</label>
-
-                        <div class="input-wrapper">
-
-                            <span class="input-icon">✉</span>
-
-                            <input
-                                class="field"
-                                type="email"
-                                th:field="*{email}"
-                                placeholder="you@example.com"
-                                required
-                            >
-
-                        </div>
-
-                        <div
-                            class="field-error"
-                            th:if="${#fields.hasErrors('email')}"
-                            th:errors="*{email}">
-                        </div>
-
-                    </div>
-
-
-                    <!-- Phone -->
-                    <div class="form-group">
-
-                        <label>Phone Number</label>
-
-                        <div class="input-wrapper">
-
-                            <span class="input-icon">📱</span>
-
-                            <input
-                                class="field"
-                                type="text"
-                                th:field="*{phoneNumber}"
-                                placeholder="+91 98765 43210"
-                            >
-
-                        </div>
-
-                    </div>
-
-
-                    <!-- City -->
-                    <div class="form-group">
-
-                        <label>City</label>
-
-                        <div class="input-wrapper">
-
-                            <span class="input-icon">📍</span>
-
-                            <input
-                                class="field"
-                                type="text"
-                                th:field="*{city}"
-                                placeholder="Your city"
-                            >
-
-                        </div>
-
-                    </div>
-
-
-                    <!-- Country -->
-                    <div class="form-group">
-
-                        <label>Country</label>
-
-                        <div class="input-wrapper">
-
-                            <span class="input-icon">🌎</span>
-
-                            <input
-                                class="field"
-                                type="text"
-                                th:field="*{country}"
-                                placeholder="Your country"
-                            >
-
-                        </div>
-
-                    </div>
-
-
+<div>
+
+    <div class="card register-card">
+
+        <label class="photo-upload-label">
+            <div class="photo-circle">Photo</div>
+            <input type="file" name="photo" accept="image/*" form="registerForm">
+        </label>
+        <div class="photo-hint">(optional) click the circle above to choose a profile photo</div>
+
+        <div th:if="${registerError}" class="alert alert-error" role="alert" th:text="${registerError}"></div>
+
+        <form id="registerForm" th:action="@{/register}" th:object="${user}" method="post" enctype="multipart/form-data">
+
+            <div class="inner-panel">
+
+                <div class="row">
+                    <label class="sr-only" for="username">Username</label>
+                    <input class="field" type="text" th:field="*{username}" placeholder="Username" autocomplete="username" required>
+                    <label class="sr-only" for="password">Password</label>
+                    <input class="field" type="password" th:field="*{password}" placeholder="Password" autocomplete="new-password" minlength="4" required>
+                </div>
+                <div class="field-error" aria-live="polite" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
+                <div class="field-error" aria-live="polite" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+
+                <div class="row">
+                    <label class="sr-only" for="firstName">First Name</label>
+                    <input class="field" type="text" th:field="*{firstName}" placeholder="First Name" autocomplete="given-name" required>
+                    <label class="sr-only" for="lastName">Last Name</label>
+                    <input class="field" type="text" th:field="*{lastName}" placeholder="Last Name" autocomplete="family-name" required>
+                </div>
+                <div class="field-error" aria-live="polite" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></div>
+                <div class="field-error" aria-live="polite" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></div>
+
+                <div class="row">
+                    <label class="sr-only" for="email">Email Address</label>
+                    <input class="field" type="email" th:field="*{email}" placeholder="Email Address" autocomplete="email" required>
+                    <label class="sr-only" for="phoneNumber">Phone Number</label>
+                    <input class="field" type="tel" th:field="*{phoneNumber}" placeholder="Phone Number" autocomplete="tel">
+                </div>
+                <div class="field-error" aria-live="polite" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+
+                <div class="row">
+                    <label class="sr-only" for="city">City</label>
+                    <input class="field" type="text" th:field="*{city}" placeholder="City" autocomplete="address-level2">
+                    <label class="sr-only" for="country">Country</label>
+                    <input class="field" type="text" th:field="*{country}" placeholder="Country" autocomplete="country-name">
                 </div>
 
-
-                <!-- Additional Information -->
-                <div class="form-group full-width">
-
-                    <label>Additional Information</label>
-
-                    <textarea
-                        class="field textarea-field"
-                        th:field="*{additionalInfo}"
-                        placeholder="Tell us a little about your travel interests..."
-                    ></textarea>
-
-                </div>
-
-
-                <!-- Terms -->
-                <label class="terms">
-                    <input type="checkbox" required>
-                    <span class="checkbox-custom"></span>
-                    <span class="label-text">
-                        I agree to the
-                        <a href="#">Terms of Service</a>
-                        and
-                        <a href="#">Privacy Policy</a>.
-                    </span>
-                </label>
-
-
-                <!-- Submit -->
-                <button class="register-btn" type="submit">
-                    Create My Account
-                    <span>→</span>
-                </button>
-
-            </form>
-
-            <!-- Login -->
-            <div class="login-link">
-                Already have an account?
-                <a th:href="@{/login}">
-                    Log in
-                </a>
+                <label class="sr-only" for="additionalInfo">Additional Information</label>
+                <textarea class="field" th:field="*{additionalInfo}" placeholder="Additional Information ...."></textarea>
             </div>
 
+            <button class="btn" type="submit">Register Users</button>
+        </form>
+
+        <div class="link-row">
+            Already have an account? <a th:href="@{/login}">Log in</a>
         </div>
-
-    </main>
-
+    </div>
 </div>
-
-
-<script>
-
-function togglePassword(id, button) {
-    const input = document.getElementById(id);
-    if (input.type === "password") {
-        input.type = "text";
-        button.textContent = "Hide";
-    } else {
-        input.type = "password";
-        button.textContent = "Show";
-    }
-}
-
-// Profile picture preview feature
-const photoInput = document.querySelector('input[name="photo"]');
-const photoCircle = document.querySelector('.photo-circle');
-
-if (photoInput && photoCircle) {
-    photoInput.addEventListener('change', function(event) {
-        const file = event.target.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                photoCircle.innerHTML = '';
-                const img = document.createElement('img');
-                img.src = e.target.result;
-                img.style.width = '100%';
-                img.style.height = '100%';
-                img.style.objectFit = 'cover';
-                img.style.borderRadius = '50%';
-                photoCircle.appendChild(img);
-                photoCircle.style.borderStyle = 'solid';
-                photoCircle.style.borderColor = 'var(--purple)';
-            }
-            reader.readAsDataURL(file);
-        }
-    });
-}
-
-</script>
-
+<script th:src="@{/js/common.js}"></script>
 </body>
 </html>
-```

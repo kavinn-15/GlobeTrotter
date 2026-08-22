@@ -1,330 +1,43 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Login | GlobeTrotter</title>
-
-    <link rel="stylesheet" href="../static/css/login.css" th:href="@{/css/login.css}">
+    <title>Login</title>
+    <link rel="stylesheet" th:href="@{/css/common.css}">
+    <link rel="stylesheet" th:href="@{/css/login.css}">
 </head>
-
 <body>
+<div>
 
-<div class="auth-page">
+    <div class="card login-card">
 
-    <!-- ================= LEFT TRAVEL PANEL ================= -->
+        <div class="photo-circle">Photo</div>
 
-    <section class="travel-panel">
+        <div th:if="${loginError}" class="alert alert-error" role="alert" th:text="${loginError}"></div>
+        <div th:if="${registerSuccess}" class="alert alert-success" role="status" th:text="${registerSuccess}"></div>
 
-        <!-- Brand -->
-        <div class="brand">
+        <form th:action="@{/login}" method="post">
+            <label class="sr-only" for="username">Username</label>
+            <input class="field" id="username" type="text" name="username" placeholder="Username"
+                   th:value="${username}" autocomplete="username" required autofocus>
 
-            <div class="brand-icon">
-                ✈
+            <label class="sr-only" for="password">Password</label>
+            <input class="field" id="password" type="password" name="password" placeholder="Password"
+                   autocomplete="current-password" required>
+
+            <div class="forgot-row">
+                <a th:href="@{/forgot-password}">Forgot password?</a>
             </div>
 
-            <span>GlobeTrotter</span>
+            <button class="btn" type="submit">Login Button</button>
+        </form>
 
+        <div class="link-row">
+            No account yet? <a th:href="@{/register}">Register here</a>
         </div>
-
-
-        <!-- Main Text -->
-        <div class="travel-content">
-
-            <span class="eyebrow">
-                WELCOME BACK • EXPLORE MORE
-            </span>
-
-            <h1>
-                Let's continue<br>
-                your journey.
-            </h1>
-
-            <p>
-                Your next adventure is waiting.
-                Sign in to access your trips, discover
-                new destinations, and continue planning.
-            </p>
-
-        </div>
-
-
-        <!-- Travel Illustration -->
-
-        <div class="travel-scene">
-
-            <div class="sun"></div>
-
-            <div class="cloud cloud-one"></div>
-            <div class="cloud cloud-two"></div>
-
-            <div class="mountain mountain-back"></div>
-            <div class="mountain mountain-front"></div>
-
-            <div class="plane">
-                ✈
-            </div>
-
-            <div class="route-line"></div>
-
-        </div>
-
-    </section>
-
-
-    <!-- ================= RIGHT LOGIN PANEL ================= -->
-
-    <main class="form-panel">
-
-        <div class="login-card">
-
-            <!-- Mobile Brand -->
-
-            <div class="mobile-brand">
-
-                <div class="brand-icon">
-                    ✈
-                </div>
-
-                <span>GlobeTrotter</span>
-
-            </div>
-
-
-            <!-- Heading -->
-
-            <div class="form-heading">
-
-                <span class="mini-label">
-                    WELCOME BACK 👋
-                </span>
-
-                <h2>
-                    Log in to your account
-                </h2>
-
-                <p>
-                    Continue your journey with GlobeTrotter.
-                </p>
-
-            </div>
-
-
-            <!-- Profile Photo -->
-
-            <div class="profile-section">
-
-                <div class="photo-circle">
-
-                    <span class="profile-icon">
-                        👤
-                    </span>
-
-                </div>
-
-                <div class="profile-text">
-
-                    <strong>
-                        Welcome back!
-                    </strong>
-
-                    <span>
-                        Sign in to continue exploring.
-                    </span>
-
-                </div>
-
-            </div>
-
-
-            <!-- Login Error -->
-
-            <div
-                th:if="${loginError}"
-                class="alert alert-error"
-                th:text="${loginError}">
-            </div>
-
-
-            <!-- Register Success -->
-
-            <div
-                th:if="${registerSuccess}"
-                class="alert alert-success"
-                th:text="${registerSuccess}">
-            </div>
-
-
-            <!-- ================= LOGIN FORM ================= -->
-
-            <form
-                class="login-form"
-                th:action="@{/login}"
-                method="post"
-            >
-
-                <!-- Username -->
-
-                <div class="form-group">
-
-                    <label for="username">
-                        Username
-                    </label>
-
-                    <div class="input-wrapper">
-
-                        <span class="input-icon">
-                            👤
-                        </span>
-
-                        <input
-                            class="field"
-                            id="username"
-                            type="text"
-                            name="username"
-                            placeholder="Enter your username"
-                            th:value="${username}"
-                            required
-                            autofocus
-                        >
-
-                    </div>
-
-                </div>
-
-
-                <!-- Password -->
-
-                <div class="form-group">
-
-                    <div class="password-label">
-
-                        <label for="password">
-                            Password
-                        </label>
-
-                        <a href="#">
-                            Forgot password?
-                        </a>
-
-                    </div>
-
-
-                    <div class="input-wrapper">
-
-                        <span class="input-icon">
-                            🔒
-                        </span>
-
-                        <input
-                            class="field"
-                            id="password"
-                            type="password"
-                            name="password"
-                            placeholder="Enter your password"
-                            required
-                        >
-
-                        <button
-                            type="button"
-                            class="password-toggle"
-                            onclick="togglePassword()"
-                        >
-                            Show
-                        </button>
-
-                    </div>
-
-                </div>
-
-
-                <!-- Remember Me -->
-                <label class="remember-me">
-                    <input type="checkbox" name="remember">
-                    <span class="checkbox-custom"></span>
-                    <span class="label-text">Remember me</span>
-                </label>
-
-                <!-- Login Button -->
-                <button class="login-btn" type="submit">
-                    <span>Login to GlobeTrotter</span>
-                    <span class="arrow">→</span>
-                </button>
-
-            </form>
-
-            <!-- Divider -->
-            <div class="divider">
-                <span></span>
-                <p>OR</p>
-                <span></span>
-            </div>
-
-            <!-- Google Button -->
-            <button type="button" class="google-btn">
-                <span class="google-icon">
-                    <svg viewBox="0 0 24 24" width="18" height="18" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
-                        <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
-                        <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z" fill="#FBBC05"/>
-                        <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
-                    </svg>
-                </span>
-                <span>Continue with Google</span>
-            </button>
-
-
-            <!-- Register -->
-
-            <div class="register-link">
-
-                Don't have an account?
-
-                <a th:href="@{/register}">
-                    Create an account
-                </a>
-
-            </div>
-
-        </div>
-
-    </main>
-
+    </div>
 </div>
-
-
-<!-- ================= JAVASCRIPT ================= -->
-
-<script>
-
-function togglePassword() {
-
-    const password =
-        document.getElementById("password");
-
-    const button =
-        document.querySelector(".password-toggle");
-
-    if (password.type === "password") {
-
-        password.type = "text";
-
-        button.textContent = "Hide";
-
-    } else {
-
-        password.type = "password";
-
-        button.textContent = "Show";
-
-    }
-
-}
-
-</script>
-
+<script th:src="@{/js/common.js}"></script>
 </body>
-
 </html>
