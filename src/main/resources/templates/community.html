@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community</title>
+    <link rel="stylesheet" th:href="@{/css/common.css}">
+    <link rel="stylesheet" th:href="@{/css/community.css}">
+</head>
+<body>
+<div class="app-frame">
+    <div class="topbar">
+        <a class="app-title-link" th:href="@{/home}">GlobalTrotter</a>
+        <a class="icon-circle" th:href="@{/profile}" title="Profile"></a>
+    </div>
+
+
+    <form class="toolbar" method="get" th:action="@{/community}">
+        <label class="sr-only" for="community-search">Search the community</label>
+        <input class="field search-field" id="community-search" type="text" name="query"
+               th:value="${query}" placeholder="Search for .....">
+        <button class="btn-outline" type="button">Group by</button>
+        <button class="btn-outline" type="button">Filter</button>
+        <button class="btn-outline" type="submit">Sort by...</button>
+    </form>
+
+    <h3 class="community-title">Community tab</h3>
+
+    <div class="alert alert-success" th:if="${communitySuccess}" th:text="${communitySuccess}"></div>
+    <div class="alert alert-error" th:if="${communityError}" th:text="${communityError}"></div>
+
+    <details class="share-panel">
+        <summary class="btn-outline share-toggle">+ Share your experience</summary>
+        <form class="share-form" th:action="@{/community}" method="post">
+            <input class="field" type="text" name="title" placeholder="Title, e.g. Weekend in Goa" required>
+            <input class="field" type="text" name="place" placeholder="Place / city">
+            <input class="field" type="text" name="activityType" placeholder="Activity, e.g. Beach, Trekking, Food">
+            <textarea class="field" name="content" rows="3" placeholder="Share what made this trip or activity memorable..."></textarea>
+            <button class="btn" type="submit">Post to Community</button>
+        </form>
+    </details>
+
+    <div class="community-list">
+        <div class="community-card" th:each="post : ${posts}">
+            <span class="icon-circle community-avatar"></span>
+            <div class="community-body">
+                <div class="community-card-title" th:text="${post.title}"></div>
+                <div class="community-card-meta">
+                    <span th:if="${post.place}" th:text="${post.place}"></span>
+                    <span th:if="${post.activityType}" th:text="'&#8226; ' + ${post.activityType}"></span>
+                    <span th:text="'&#8226; by ' + ${post.author != null ? post.author.username : 'a traveller'}"></span>
+                </div>
+                <p class="community-card-text" th:if="${post.content}" th:text="${post.content}"></p>
+            </div>
+        </div>
+
+        <div class="community-empty" th:if="${#lists.isEmpty(posts)}">
+            No community posts yet &mdash; be the first to share your trip!
+        </div>
+    </div>
+</div>
+<script th:src="@{/js/common.js}"></script>
+</body>
+</html>

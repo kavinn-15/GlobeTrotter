@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GlobalTrotter</title>
+    <link rel="stylesheet" th:href="@{/css/common.css}">
+    <link rel="stylesheet" th:href="@{/css/home.css}">
+</head>
+<body>
+<div class="app-frame">
+    <div class="topbar">
+        <a class="app-title-link" th:href="@{/home}">GlobalTrotter</a>
+        <a class="icon-circle" th:href="@{/profile}" title="Profile"></a>
+    </div>
+
+
+    <div class="nav-row">
+        <a class="btn-outline" th:href="@{/trips}">My Trips</a>
+        <a class="btn-outline" th:href="@{/calendar}">Calendar</a>
+        <a class="btn-outline" th:href="@{/community}">Community</a>
+        <a class="btn-outline" th:if="${user.admin}" th:href="@{/admin}">Admin Panel</a>
+    </div>
+
+    <div class="banner" style="background-image: url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=1600&h=500&fit=crop&q=80')">
+        <span class="banner-label">Explore the world, one trip at a time</span>
+    </div>
+
+    <form class="toolbar" method="get" th:action="@{/activities}">
+        <label class="sr-only" for="home-search">Search activities or cities</label>
+        <input class="field search-field" id="home-search" type="text" name="query" placeholder="Search for .....">
+        <button class="btn-outline" type="button">Group by</button>
+        <button class="btn-outline" type="button">Filter</button>
+        <button class="btn-outline" type="submit">Sort by...</button>
+    </form>
+
+    <a class="section-label" th:href="@{/activities}">Top Regional Selections</a>
+    <div class="tile-row">
+        <a class="tile tile-photo" th:each="dest : ${regionalSelections}" th:href="@{/activities}"
+           th:style="'background-image: url(' + ${dest.imageUrl} + ')'">
+            <span class="tile-caption">
+                <span class="tile-caption-title" th:text="${dest.name}">City</span>
+                <span class="tile-caption-sub" th:text="${dest.subtitle}">Country</span>
+            </span>
+        </a>
+    </div>
+
+    <a class="section-label" th:href="@{/trips}">Previous Trips</a>
+    <div class="tile-row">
+        <a class="tile tile-tall tile-photo" th:each="trip : ${previousTrips}" th:href="@{/trips}"
+           th:style="'background-image: url(' + ${trip.imageUrl} + ')'">
+            <span class="tile-caption">
+                <span class="tile-caption-title" th:text="${trip.name}">City</span>
+                <span class="tile-caption-sub" th:text="${trip.subtitle}">Dates</span>
+            </span>
+        </a>
+    </div>
+
+    <div class="plan-trip-row">
+        <a class="btn" th:href="@{/trips/new}">+ Plan a trip</a>
+    </div>
+</div>
+<script th:src="@{/js/common.js}"></script>
+</body>
+</html>

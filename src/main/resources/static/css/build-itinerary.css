@@ -1,0 +1,93 @@
+/* build-itinerary.css — Screen 5, built on common.css tokens */
+
+.itinerary-section {
+    position: relative;
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-md);
+    padding: 18px 20px;
+    margin: 0 22px 16px;
+    background: linear-gradient(160deg, rgba(46, 196, 182, 0.08), transparent);
+    box-shadow: var(--shadow-soft);
+    animation: section-in 0.4s cubic-bezier(.2, .85, .3, 1.05);
+}
+
+@keyframes section-in {
+    from { opacity: 0; transform: translateY(10px) scale(0.98); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.itinerary-section h3 {
+    margin: 0 0 6px;
+    font-size: 0.98rem;
+    font-weight: 600;
+    font-family: var(--font-display);
+    color: var(--mint);
+}
+
+.itinerary-section h3::before {
+    content: "\1F9F3  ";
+}
+
+.itinerary-section p {
+    margin: 0 0 14px;
+    font-size: 0.8rem;
+    color: var(--ink-faint);
+    line-height: 1.5;
+}
+
+.itinerary-row {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.itinerary-row .field {
+    margin-bottom: 0;
+    flex: 1;
+}
+
+.date-range-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 2;
+    min-width: 240px;
+}
+.date-range-group .field {
+    flex: 1;
+    min-width: 0;
+    color-scheme: dark;
+}
+html[data-theme="light"] .date-range-group .field { color-scheme: light; }
+.date-range-sep {
+    font-size: 0.78rem;
+    color: var(--ink-faint);
+    white-space: nowrap;
+    flex: 0 0 auto;
+}
+
+.add-section-row { margin: 4px 22px 0; }
+.add-section-row .btn-outline { width: 100%; justify-content: center; }
+
+.finish-row { margin: 20px 22px 0; }
+.finish-row .btn {
+    width: 100%;
+    text-decoration: none;
+    text-align: center;
+}
+
+.remove-section {
+    position: absolute;
+    top: 14px;
+    right: 16px;
+    background: none;
+    border: none;
+    color: var(--danger);
+    font-size: 0.75rem;
+    cursor: pointer;
+    text-decoration: underline;
+    font-family: inherit;
+    padding: 0;
+    transition: color 0.2s ease;
+}
+.remove-section:hover { color: var(--danger-strong); }

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" th:href="@{/css/common.css}">
+    <link rel="stylesheet" th:href="@{/css/register.css}">
+</head>
+<body>
+<div>
+
+    <div class="card register-card">
+
+        <label class="photo-upload-label">
+            <div class="photo-circle">Photo</div>
+            <input type="file" name="photo" accept="image/*" form="registerForm">
+        </label>
+        <div class="photo-hint">(optional) click the circle above to choose a profile photo</div>
+
+        <div th:if="${registerError}" class="alert alert-error" role="alert" th:text="${registerError}"></div>
+
+        <form id="registerForm" th:action="@{/register}" th:object="${user}" method="post" enctype="multipart/form-data">
+
+            <div class="inner-panel">
+
+                <div class="row">
+                    <label class="sr-only" for="username">Username</label>
+                    <input class="field" type="text" th:field="*{username}" placeholder="Username" autocomplete="username" required>
+                    <label class="sr-only" for="password">Password</label>
+                    <input class="field" type="password" th:field="*{password}" placeholder="Password" autocomplete="new-password" minlength="4" required>
+                </div>
+                <div class="field-error" aria-live="polite" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
+                <div class="field-error" aria-live="polite" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+
+                <div class="row">
+                    <label class="sr-only" for="firstName">First Name</label>
+                    <input class="field" type="text" th:field="*{firstName}" placeholder="First Name" autocomplete="given-name" required>
+                    <label class="sr-only" for="lastName">Last Name</label>
+                    <input class="field" type="text" th:field="*{lastName}" placeholder="Last Name" autocomplete="family-name" required>
+                </div>
+                <div class="field-error" aria-live="polite" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></div>
+                <div class="field-error" aria-live="polite" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></div>
+
+                <div class="row">
+                    <label class="sr-only" for="email">Email Address</label>
+                    <input class="field" type="email" th:field="*{email}" placeholder="Email Address" autocomplete="email" required>
+                    <label class="sr-only" for="phoneNumber">Phone Number</label>
+                    <input class="field" type="tel" th:field="*{phoneNumber}" placeholder="Phone Number" autocomplete="tel">
+                </div>
+                <div class="field-error" aria-live="polite" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+
+                <div class="row">
+                    <label class="sr-only" for="city">City</label>
+                    <input class="field" type="text" th:field="*{city}" placeholder="City" autocomplete="address-level2">
+                    <label class="sr-only" for="country">Country</label>
+                    <input class="field" type="text" th:field="*{country}" placeholder="Country" autocomplete="country-name">
+                </div>
+
+                <label class="sr-only" for="additionalInfo">Additional Information</label>
+                <textarea class="field" th:field="*{additionalInfo}" placeholder="Additional Information ...."></textarea>
+            </div>
+
+            <button class="btn" type="submit">Register Users</button>
+        </form>
+
+        <div class="link-row">
+            Already have an account? <a th:href="@{/login}">Log in</a>
+        </div>
+    </div>
+</div>
+<script th:src="@{/js/common.js}"></script>
+</body>
+</html>

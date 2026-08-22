@@ -1,0 +1,13 @@
+/* edit-profile.css — built on common.css + register.css tokens */
+
+.field[disabled] {
+    opacity: 0.55;
+    cursor: not-allowed;
+}
+
+.field-note {
+    text-align: left;
+    font-size: 0.72rem;
+    color: var(--ink-faint);
+    margin: -12px 0 14px 2px;
+}
