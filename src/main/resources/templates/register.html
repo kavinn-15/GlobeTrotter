@@ -370,40 +370,31 @@
 
                 <!-- Terms -->
                 <label class="terms">
-
                     <input type="checkbox" required>
-
-                    <span>
+                    <span class="checkbox-custom"></span>
+                    <span class="label-text">
                         I agree to the
                         <a href="#">Terms of Service</a>
                         and
                         <a href="#">Privacy Policy</a>.
                     </span>
-
                 </label>
 
 
                 <!-- Submit -->
                 <button class="register-btn" type="submit">
-
                     Create My Account
-
                     <span>→</span>
-
                 </button>
 
             </form>
 
-
             <!-- Login -->
             <div class="login-link">
-
                 Already have an account?
-
                 <a th:href="@{/login}">
                     Log in
                 </a>
-
             </div>
 
         </div>
@@ -416,21 +407,40 @@
 <script>
 
 function togglePassword(id, button) {
-
     const input = document.getElementById(id);
-
     if (input.type === "password") {
-
         input.type = "text";
         button.textContent = "Hide";
-
     } else {
-
         input.type = "password";
         button.textContent = "Show";
-
     }
+}
 
+// Profile picture preview feature
+const photoInput = document.querySelector('input[name="photo"]');
+const photoCircle = document.querySelector('.photo-circle');
+
+if (photoInput && photoCircle) {
+    photoInput.addEventListener('change', function(event) {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                photoCircle.innerHTML = '';
+                const img = document.createElement('img');
+                img.src = e.target.result;
+                img.style.width = '100%';
+                img.style.height = '100%';
+                img.style.objectFit = 'cover';
+                img.style.borderRadius = '50%';
+                photoCircle.appendChild(img);
+                photoCircle.style.borderStyle = 'solid';
+                photoCircle.style.borderColor = 'var(--purple)';
+            }
+            reader.readAsDataURL(file);
+        }
+    });
 }
 
 </script>
