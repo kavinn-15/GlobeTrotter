@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <link rel="stylesheet" th:href="@{/css/common.css}">
+    <link rel="stylesheet" th:href="@{/css/admin.css}">
+</head>
+<body>
+<div class="app-frame admin-frame">
+    <div class="topbar">
+        <a class="app-title-link" th:href="@{/home}">GlobalTrotter</a>
+        <a class="icon-circle" th:href="@{/profile}" title="Profile"></a>
+    </div>
+
+
+    <form class="toolbar" method="get" th:action="@{/admin}">
+        <label class="sr-only" for="admin-search">Search users</label>
+        <input class="field search-field" id="admin-search" type="text" placeholder="Search for .....">
+        <button class="btn-outline" type="button">Group by</button>
+        <button class="btn-outline" type="button">Filter</button>
+        <button class="btn-outline" type="button">Sort by...</button>
+    </form>
+
+    <div class="admin-tabs">
+        <a class="admin-tab" th:classappend="${section == 'manage-users'} ? 'admin-tab-active'"
+           th:href="@{/admin(section='manage-users')}">Manage Users</a>
+        <a class="admin-tab" th:classappend="${section == 'popular-cities'} ? 'admin-tab-active'"
+           th:href="@{/admin(section='popular-cities')}">Popular cities</a>
+        <a class="admin-tab" th:classappend="${section == 'popular-activities'} ? 'admin-tab-active'"
+           th:href="@{/admin(section='popular-activities')}">Popular Activities</a>
+        <a class="admin-tab" th:classappend="${section == 'trends'} ? 'admin-tab-active'"
+           th:href="@{/admin(section='trends')}">User Trends and analytics</a>
+    </div>
+
+    <div class="admin-body">
+        <div class="admin-panel">
+            <div class="admin-stats-row">
+                <div class="admin-stat"><span class="admin-stat-value" th:text="${totalUsers}"></span><span class="admin-stat-label">Users</span></div>
+                <div class="admin-stat"><span class="admin-stat-value" th:text="${totalTrips}"></span><span class="admin-stat-label">Trips</span></div>
+                <div class="admin-stat"><span class="admin-stat-value" th:text="${totalPosts}"></span><span class="admin-stat-label">Community posts</span></div>
+            </div>
+
+            <!-- Manage Users -->
+            <div th:if="${section == 'manage-users'}">
+                <table class="admin-table">
+                    <thead>
+                    <tr>
+                        <th>Username</th>
+                        <th>Name</th>
+                        <th>City</th>
+                        <th>Admin</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="u : ${users}">
+                        <td th:text="${u.username}"></td>
+                        <td th:text="${u.firstName} + ' ' + ${u.lastName}"></td>
+                        <td th:text="${u.city}"></td>
+                        <td th:text="${u.admin} ? 'Yes' : 'No'"></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="admin-empty" th:if="${#lists.isEmpty(users)}">No registered users yet.</div>
+            </div>
+
+            <!-- Popular cities -->
+            <div th:if="${section == 'popular-cities'}">
+                <div class="bar-row" th:each="item : ${popularCities}">
+                    <span class="bar-label" th:text="${item.label}"></span>
+                    <div class="bar-track">
+                        <div class="bar-fill" th:style="'width: ' + ${item.percent} + '%'"></div>
+                    </div>
+                    <span class="bar-count" th:text="${item.count}"></span>
+                </div>
+                <div class="admin-empty" th:if="${#lists.isEmpty(popularCities)}">No trips have been planned yet.</div>
+            </div>
+
+            <!-- Popular Activities -->
+            <div th:if="${section == 'popular-activities'}">
+                <div class="bar-row" th:each="item : ${popularActivities}">
+                    <span class="bar-label" th:text="${item.label}"></span>
+                    <div class="bar-track">
+                        <div class="bar-fill" th:style="'width: ' + ${item.percent} + '%'"></div>
+                    </div>
+                    <span class="bar-count" th:text="${item.count}"></span>
+                </div>
+                <div class="admin-empty" th:if="${#lists.isEmpty(popularActivities)}">No community activities tagged yet.</div>
+            </div>
+
+            <!-- User Trends and analytics -->
+            <div th:if="${section == 'trends'}">
+                <div class="trend-label">New registrations, last 6 months</div>
+                <div class="trend-chart">
+                    <div class="trend-col" th:each="item : ${registrationTrend}">
+                        <div class="trend-bar" th:style="'height: ' + ${item.percent} + '%'" th:title="${item.count}"></div>
+                        <span class="trend-month" th:text="${item.label}"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="admin-info">
+            <p><strong>Manage Users:</strong> This section is responsible for managing the users and their actions.
+                It gives the admin access to view all the trips made by the user, plus other functionalities.</p>
+            <p><strong>Popular cities:</strong> Lists all the cities where users are visiting based on the current
+                trip trends.</p>
+            <p><strong>Popular Activities:</strong> Lists all the popular activities users are tagging their
+                community posts with, based on current trends.</p>
+            <p><strong>User Trends and analytics:</strong> This section is majorly focused on providing analysis,
+                assessing various points and giving useful information to the admin.</p>
+        </div>
+    </div>
+</div>
+<script th:src="@{/js/common.js}"></script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+/* create-trip.css — Screen 4, built on common.css tokens */
+
+.panel-title {
+    padding: 0 22px;
+    margin: 18px 0 16px;
+    font-size: 1rem;
+    color: var(--ink);
+    font-family: var(--font-display);
+}
+.panel-title::before { content: "\1F30D  "; }
+
+.form-panel {
+    margin: 0 22px 6px;
+    background: var(--glass);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-md);
+    padding: 18px;
+}
+
+.form-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+}
+.form-row:last-child { margin-bottom: 0; }
+
+.form-row label {
+    width: 110px;
+    flex: 0 0 auto;
+    font-size: 0.85rem;
+    color: var(--ink-dim);
+}
+
+.form-row .field { margin-bottom: 0; flex: 1; min-width: 0; }
+.form-row .btn-outline { text-decoration: none; }
+
+.suggestion-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin: 20px 22px 24px;
+}
+
+.suggestion-grid .tile { width: 100%; height: 92px; }
+
+.submit-row { margin: 0 22px; }
+.submit-row .btn { width: 100%; }

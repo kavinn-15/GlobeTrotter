@@ -8,21 +8,18 @@
     box-sizing: border-box;
 }
 
-
-/* =========================================================
-   BASE
-========================================================= */
-
 html {
-    scroll-behavior: smooth;
+    min-height: 100%;
 }
 
 body {
+    min-height: 100vh;
+
     font-family: "Poppins", sans-serif;
 
-    background: #f8f7ff;
+    background: #f8f7fd;
 
-    color: #211d38;
+    color: #11183d;
 
     -webkit-font-smoothing: antialiased;
 }
@@ -32,48 +29,21 @@ input {
     font-family: inherit;
 }
 
-button {
-    cursor: pointer;
-}
-
-svg {
-    width: 20px;
-    height: 20px;
-
-    fill: none;
-
-    stroke: currentColor;
-
-    stroke-width: 1.8;
-
-    stroke-linecap: round;
-    stroke-linejoin: round;
-}
-
 
 /* =========================================================
-   APP
+   NAVBAR
 ========================================================= */
 
-.app {
-    min-height: 100vh;
-}
-
-
-/* =========================================================
-   TOPBAR
-========================================================= */
-
-.topbar {
-    height: 87px;
+.navbar {
+    height: 86px;
 
     background: #ffffff;
 
-    border-bottom: 1px solid #efedf8;
+    border-bottom: 1px solid #e8e4f5;
 }
 
-.topbar-inner {
-    width: 94.5%;
+.navbar-inner {
+    width: 92%;
 
     max-width: 1200px;
 
@@ -90,116 +60,42 @@ svg {
 
 
 /* =========================================================
-   BRAND
+   LOGO
 ========================================================= */
 
-.brand {
-    display: flex;
+.logo {
+    color: #5b3df5;
 
-    align-items: center;
-
-    gap: 9px;
-
-    text-decoration: none;
-
-    color: #5938ee;
-
-    font-size: 21px;
+    font-size: 22px;
 
     font-weight: 700;
-
-    letter-spacing: -0.4px;
-}
-
-.brand-icon {
-    width: 38px;
-    height: 38px;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    color: #5b3df5;
-}
-
-.brand-icon svg {
-    width: 38px;
-    height: 38px;
-
-    stroke-width: 2;
 }
 
 
 /* =========================================================
-   TOPBAR RIGHT
+   NAV RIGHT
 ========================================================= */
 
-.topbar-right {
+.navbar-right {
     display: flex;
 
     align-items: center;
 
-    gap: 18px;
+    gap: 32px;
 }
 
+.notifications-link {
+    color: #11183d;
 
-/* =========================================================
-   NOTIFICATION
-========================================================= */
+    font-size: 14.5px;
 
-.notification-btn {
-    position: relative;
+    font-weight: 500;
 
-    width: 40px;
-    height: 40px;
+    background: none;
 
     border: none;
 
-    background: transparent;
-
-    color: #5e5a79;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-}
-
-.notification-btn svg {
-    width: 24px;
-    height: 24px;
-
-    stroke-width: 1.7;
-}
-
-.notification-badge {
-    position: absolute;
-
-    top: 1px;
-    right: 1px;
-
-    min-width: 16px;
-    height: 16px;
-
-    padding: 0 4px;
-
-    border-radius: 20px;
-
-    background: #ef4667;
-
-    color: #ffffff;
-
-    font-size: 9px;
-
-    font-weight: 700;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    border: 2px solid #ffffff;
+    cursor: pointer;
 }
 
 
@@ -212,59 +108,64 @@ svg {
 
     align-items: center;
 
-    gap: 11px;
+    gap: 10px;
 }
 
 .avatar {
-    width: 43px;
-    height: 43px;
+    width: 38px;
+    height: 38px;
 
     border-radius: 50%;
 
     background: #eee8ff;
 
-    color: #5635dd;
+    color: #5b3df5;
 
     display: flex;
 
     align-items: center;
+
     justify-content: center;
 
-    font-size: 16px;
+    font-size: 15px;
 
     font-weight: 600;
 }
 
 .profile-name {
-    font-size: 14px;
+    color: #11183d;
+
+    font-size: 14.5px;
 
     font-weight: 600;
-
-    color: #28243e;
 }
 
 .profile-arrow {
-    width: 16px;
-    height: 16px;
+    width: 15px;
+    height: 15px;
 
-    color: #77718f;
+    color: #777391;
 
-    margin-left: 2px;
+    fill: none;
+
+    stroke: currentColor;
+
+    stroke-width: 2;
 }
 
 
 /* =========================================================
-   MAIN CONTAINER
+   MAIN
 ========================================================= */
 
 .main-container {
-    width: 94.5%;
+    width: 92%;
 
     max-width: 1200px;
 
     margin: auto;
 
-    padding: 37px 0 65px;
+    padding: 48px 0 60px;
 }
 
 
@@ -273,59 +174,25 @@ svg {
 ========================================================= */
 
 .hero {
-    height: 116px;
-
-    position: relative;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: space-between;
-
-    margin-bottom: 20px;
-
-    padding-left: 27px;
-
-    overflow: hidden;
-}
-
-.hero-content {
-    position: relative;
-
-    z-index: 2;
+    margin-bottom: 28px;
 }
 
 .hero h1 {
-    display: flex;
+    color: #11183d;
 
-    align-items: center;
-
-    gap: 10px;
-
-    font-size: 38px;
+    font-size: 40px;
 
     line-height: 1.1;
 
     font-weight: 700;
 
-    letter-spacing: -1px;
-
-    color: #14183a;
-}
-
-.sparkle {
-    color: #653ff4;
-
-    font-size: 28px;
-
-    transform: translateY(-3px);
+    letter-spacing: -0.8px;
 }
 
 .hero p {
-    margin-top: 13px;
+    margin-top: 12px;
 
-    color: #64607c;
+    color: #777391;
 
     font-size: 15.5px;
 
@@ -334,65 +201,24 @@ svg {
 
 
 /* =========================================================
-   HERO ART
+   TRIP CARD
 ========================================================= */
 
-.hero-art {
-    position: absolute;
-
-    right: 4px;
-
-    top: -3px;
-
-    width: 390px;
-
-    height: 150px;
-
-    pointer-events: none;
-}
-
-.travel-art {
-    width: 100%;
-
-    height: 100%;
-}
-
-.cloud {
-    fill: #eeebfa;
-}
-
-.cloud-one {
-    opacity: 0.95;
-}
-
-.cloud-two {
-    opacity: 0.8;
-}
-
-.cloud-three {
-    opacity: 0.75;
-}
-
-
-/* =========================================================
-   FORM PANEL
-========================================================= */
-
-.form-panel {
+.trip-card {
     width: 100%;
 
     background: #ffffff;
 
+    border: 1px solid #e8e4f5;
+
     border-radius: 20px;
 
-    border: 1px solid #f0eef8;
+    padding: 34px 36px;
+
+    margin-bottom: 24px;
 
     box-shadow:
-        0 8px 30px rgba(72, 50, 145, 0.055);
-
-    padding: 25px 30px 24px;
-
-    margin-bottom: 25px;
+        0 8px 24px rgba(91, 61, 245, 0.045);
 }
 
 
@@ -401,49 +227,17 @@ svg {
 ========================================================= */
 
 .form-row {
-    min-height: 106px;
-
     display: grid;
 
-    grid-template-columns: 55px 190px minmax(0, 1fr);
+    grid-template-columns:
+        200px
+        minmax(0, 1fr);
 
     align-items: center;
 
     column-gap: 28px;
 
-    border-bottom: 1px solid #f1eff8;
-}
-
-.form-row.last {
-    border-bottom: none;
-}
-
-
-/* =========================================================
-   ROW ICON
-========================================================= */
-
-.row-icon {
-    width: 55px;
-    height: 55px;
-
-    border-radius: 15px;
-
-    background: #f0ecff;
-
-    color: #5739e7;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-}
-
-.row-icon svg {
-    width: 25px;
-    height: 25px;
-
-    stroke-width: 1.7;
+    padding: 22px 0;
 }
 
 
@@ -452,69 +246,15 @@ svg {
 ========================================================= */
 
 .form-row label {
+    color: #11183d;
+
     font-size: 15.5px;
 
     font-weight: 600;
-
-    color: #252139;
-
-    white-space: nowrap;
 }
 
 .form-row label span {
-    color: #e8484d;
-
-    margin-left: 2px;
-}
-
-
-/* =========================================================
-   INPUT BOX
-========================================================= */
-
-.input-box {
-    height: 67px;
-
-    width: 100%;
-
-    border: 1.5px solid #e4dfff;
-
-    border-radius: 13px;
-
-    background: #fefeff;
-
-    display: flex;
-
-    align-items: center;
-
-    position: relative;
-
-    padding: 0 18px;
-
-    transition: all 0.2s ease;
-}
-
-.input-box:focus-within {
-    border-color: #7657f5;
-
-    box-shadow:
-        0 0 0 3px rgba(118, 87, 245, 0.08);
-}
-
-
-/* =========================================================
-   INPUT ICON
-========================================================= */
-
-.input-icon {
-    width: 25px;
-    height: 25px;
-
-    color: #817b9f;
-
-    flex-shrink: 0;
-
-    margin-right: 14px;
+    color: #e94a4e;
 }
 
 
@@ -522,8 +262,39 @@ svg {
    INPUT
 ========================================================= */
 
-.input-box input {
+.input-container {
+    height: 62px;
+
     width: 100%;
+
+    border: 1.5px solid #e8e4f5;
+
+    border-radius: 13px;
+
+    padding: 0 20px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 12px;
+
+    background: #ffffff;
+}
+
+.input-container:focus-within {
+    border-color: #5b3df5;
+
+    box-shadow:
+        0 0 0 3px rgba(91, 61, 245, 0.06);
+}
+
+.input-container input {
+    flex: 1;
+
+    min-width: 0;
 
     height: 100%;
 
@@ -533,113 +304,98 @@ svg {
 
     background: transparent;
 
-    color: #4d4968;
+    color: #11183d;
 
     font-size: 15px;
-
-    font-weight: 400;
 }
 
+.input-container input::placeholder {
+    color: #777391;
 
-/* =========================================================
-   DATE INPUT
-========================================================= */
-
-.input-box input[type="date"] {
-    position: relative;
-
-    color: #5b5675;
+    opacity: 1;
 }
 
-.input-box input[type="date"]::-webkit-calendar-picker-indicator {
-    position: absolute;
-
-    right: 45px;
-
-    width: 25px;
-    height: 25px;
-
-    opacity: 0;
+.input-container input[type="date"] {
+    color: transparent;
 
     cursor: pointer;
 }
 
-
-/* Hide native date text when empty */
-
-.input-box input[type="date"]:invalid {
-    color: transparent;
+.input-container input[type="date"]:focus,
+.input-container input[type="date"]:valid {
+    color: #11183d;
 }
 
-.input-box input[type="date"]:valid {
-    color: #4c4867;
-}
+.input-container input[type="date"]::-webkit-calendar-picker-indicator {
+    opacity: 0;
 
-
-/* =========================================================
-   PLACEHOLDER
-========================================================= */
-
-.input-placeholder {
     position: absolute;
 
-    left: 58px;
+    width: 100%;
 
-    color: #85809e;
+    height: 100%;
+
+    left: 0;
+
+    cursor: pointer;
+}
+
+.placeholder {
+    position: absolute;
+
+    color: #777391;
 
     font-size: 15px;
 
     pointer-events: none;
 }
 
-
-/* Hide placeholder after value exists */
-
-.input-box input:valid + .input-placeholder {
+.input-container input[type="date"]:valid + .placeholder {
     display: none;
 }
 
-
-/* =========================================================
-   CHEVRON
-========================================================= */
-
-.input-chevron {
-    width: 20px;
-    height: 20px;
-
-    color: #6247df;
+.dropdown-icon {
+    width: 18px;
+    height: 18px;
 
     flex-shrink: 0;
 
-    margin-left: 10px;
+    color: #777391;
 
-    pointer-events: none;
+    fill: none;
+
+    stroke: currentColor;
+
+    stroke-width: 2;
+
+    stroke-linecap: round;
+
+    stroke-linejoin: round;
 }
 
 
 /* =========================================================
-   SUGGESTIONS PANEL
+   SUGGESTIONS
 ========================================================= */
 
-.suggestions-panel {
+.suggestions-card {
     background: #ffffff;
 
-    border: 1px solid #f0eef8;
+    border: 1px solid #e8e4f5;
 
     border-radius: 20px;
 
+    padding: 30px 32px;
+
+    margin-bottom: 24px;
+
     box-shadow:
-        0 8px 30px rgba(72, 50, 145, 0.055);
-
-    padding: 24px 20px 23px;
-
-    margin-bottom: 23px;
+        0 8px 24px rgba(91, 61, 245, 0.045);
 }
 
 
 /* =========================================================
-   SUGGESTIONS HEADER
+   SUGGESTION HEADER
 ========================================================= */
 
 .suggestions-header {
@@ -649,50 +405,15 @@ svg {
 
     justify-content: space-between;
 
-    margin-bottom: 21px;
-
-    padding: 0 4px;
-}
-
-.suggestions-title {
-    display: flex;
-
-    align-items: center;
-
-    gap: 14px;
-}
-
-.compass-icon {
-    width: 47px;
-    height: 47px;
-
-    border-radius: 14px;
-
-    background: #f0ecff;
-
-    color: #593cf0;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-}
-
-.compass-icon svg {
-    width: 23px;
-    height: 23px;
-
-    stroke-width: 1.7;
+    margin-bottom: 26px;
 }
 
 .suggestions-title h2 {
-    font-size: 18px;
+    color: #11183d;
+
+    font-size: 19px;
 
     font-weight: 700;
-
-    color: #15183d;
-
-    letter-spacing: -0.2px;
 }
 
 
@@ -701,36 +422,34 @@ svg {
 ========================================================= */
 
 .see-all {
-    height: 50px;
+    border: none;
 
-    padding: 0 18px;
+    background: transparent;
+
+    color: #5b3df5;
 
     display: flex;
 
     align-items: center;
 
-    gap: 9px;
+    gap: 8px;
 
-    border: 1px solid #e1ddf2;
-
-    background: #ffffff;
-
-    border-radius: 12px;
-
-    color: #5d3ce9;
-
-    font-size: 13px;
+    font-size: 14px;
 
     font-weight: 600;
+
+    cursor: pointer;
 }
 
 .see-all svg {
-    width: 20px;
-    height: 20px;
-}
+    width: 17px;
+    height: 17px;
 
-.see-all:hover {
-    background: #f8f6ff;
+    fill: none;
+
+    stroke: currentColor;
+
+    stroke-width: 2;
 }
 
 
@@ -738,185 +457,60 @@ svg {
    DESTINATION GRID
 ========================================================= */
 
-.suggestion-grid {
+.destination-grid {
     display: grid;
 
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
 
-    gap: 17px;
+    gap: 20px;
 }
 
 
 /* =========================================================
-   TILE
+   DESTINATION CARD
 ========================================================= */
 
-.tile {
-    height: 219px;
-
-    position: relative;
-
-    overflow: hidden;
-
-    border: 1px solid #ece9f6;
-
-    border-radius: 17px;
-
+.destination-card {
     background: #ffffff;
 
-    padding: 20px 14px 14px;
+    border: 1px solid #e8e4f5;
 
-    cursor: pointer;
+    border-radius: 16px;
+
+    padding: 24px;
 
     transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease;
+        transform .18s ease,
+        box-shadow .18s ease;
 }
 
-.tile:hover {
+.destination-card:hover {
     transform: translateY(-2px);
 
     box-shadow:
-        0 12px 25px rgba(75, 50, 150, 0.09);
+        0 12px 24px rgba(91, 61, 245, 0.08);
 }
 
 
 /* =========================================================
-   TILE ICON
+   CARD CONTENT
 ========================================================= */
 
-.tile-icon {
-    width: 82px;
-    height: 82px;
+.card-content h3 {
+    color: #11183d;
 
-    border-radius: 50%;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    margin-bottom: 13px;
-}
-
-.tile-icon svg {
-    width: 48px;
-    height: 48px;
-
-    stroke-width: 1.5;
-}
-
-.tile-icon.purple {
-    background: #e9e1ff;
-
-    color: #5032cb;
-}
-
-.tile-icon.green {
-    background: #dff6e3;
-
-    color: #16a23a;
-}
-
-.tile-icon.orange {
-    background: #ffe1d4;
-
-    color: #e64b0a;
-}
-
-.tile-icon.blue {
-    background: #e0ebff;
-
-    color: #214aab;
-}
-
-.tile-icon.yellow {
-    background: #fff0c7;
-
-    color: #e29100;
-}
-
-.tile-icon.pink {
-    background: #ffe1ec;
-
-    color: #dd3973;
-}
-
-
-/* =========================================================
-   FAVORITE BUTTON
-========================================================= */
-
-.fav-btn {
-    position: absolute;
-
-    top: 17px;
-
-    right: 14px;
-
-    width: 34px;
-    height: 34px;
-
-    border: none;
-
-    background: transparent;
-
-    color: #777390;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    z-index: 3;
-}
-
-.fav-btn svg {
-    width: 24px;
-    height: 24px;
-
-    stroke-width: 1.7;
-}
-
-.fav-btn.active {
-    color: #ef4e71;
-}
-
-.fav-btn.active svg {
-    fill: #ef4e71;
-}
-
-
-/* =========================================================
-   TILE TEXT
-========================================================= */
-
-.tile h3 {
-    position: relative;
-
-    z-index: 2;
-
-    font-size: 15px;
-
-    line-height: 1.2;
+    font-size: 16px;
 
     font-weight: 700;
-
-    color: #17193e;
 }
 
-.tile > p {
-    position: relative;
-
-    z-index: 2;
-
+.card-content p {
     margin-top: 5px;
 
-    color: #77738f;
+    color: #777391;
 
-    font-size: 12px;
-
-    font-weight: 400;
+    font-size: 13px;
 }
 
 
@@ -925,155 +519,102 @@ svg {
 ========================================================= */
 
 .rating {
-    position: relative;
-
-    z-index: 2;
-
     display: flex;
 
     align-items: center;
 
     gap: 6px;
 
-    margin-top: 11px;
+    margin-top: 14px;
 }
 
-.rating span {
-    color: #ffb300;
+.rating .star {
+    color: #ffb52e;
 
-    font-size: 17px;
+    font-size: 15px;
 
-    letter-spacing: -2px;
+    line-height: 1;
 }
 
-.rating strong {
-    color: #77738f;
+.rating small {
+    color: #11183d;
 
-    font-size: 12px;
-
-    font-weight: 500;
-
-    letter-spacing: 0;
-}
-
-
-/* =========================================================
-   TAG
-========================================================= */
-
-.tag {
-    position: relative;
-
-    z-index: 2;
-
-    display: inline-flex;
-
-    align-items: center;
-
-    margin-top: 13px;
-
-    padding: 6px 12px;
-
-    border-radius: 8px;
-
-    font-size: 10.5px;
+    font-size: 13.5px;
 
     font-weight: 600;
 }
 
-.purple-tag {
+
+/* =========================================================
+   TAGS
+========================================================= */
+
+.tag {
+    display: inline-block;
+
+    margin-top: 16px;
+
+    padding: 6px 14px;
+
+    border-radius: 8px;
+
+    font-size: 11.5px;
+
+    font-weight: 600;
+}
+
+.tag.purple {
     background: #eee8ff;
-    color: #6340dc;
+
+    color: #5b3df5;
 }
 
-.green-tag {
-    background: #e1f7e6;
-    color: #299b52;
+.tag.green {
+    background: #e2f7e6;
+
+    color: #27974e;
 }
 
-.orange-tag {
-    background: #ffebe1;
-    color: #e76735;
+.tag.orange {
+    background: #ffebe2;
+
+    color: #dd6936;
 }
 
-.blue-tag {
-    background: #e5efff;
-    color: #3e73dc;
+.tag.blue {
+    background: #e4edff;
+
+    color: #3970d4;
 }
 
-.yellow-tag {
-    background: #fff4d2;
-    color: #c69214;
+.tag.yellow {
+    background: #fff3d0;
+
+    color: #ba8912;
 }
 
-.pink-tag {
-    background: #ffe8f1;
-    color: #d5467d;
-}
+.tag.pink {
+    background: #ffe7f0;
 
-
-/* =========================================================
-   WATERMARK
-========================================================= */
-
-.watermark {
-    position: absolute;
-
-    right: -4px;
-
-    bottom: -17px;
-
-    font-size: 105px;
-
-    line-height: 1;
-
-    font-family: Georgia, serif;
-
-    opacity: 0.055;
-
-    pointer-events: none;
-}
-
-.watermark.paris {
-    color: #5032cb;
-}
-
-.watermark.bali {
-    color: #16a23a;
-}
-
-.watermark.mountains {
-    color: #e64b0a;
-}
-
-.watermark.london {
-    color: #214aab;
-}
-
-.watermark.rome {
-    color: #e29100;
-}
-
-.watermark.tokyo {
-    color: #dd3973;
+    color: #d7467b;
 }
 
 
 /* =========================================================
-   SUBMIT SECTION
+   CREATE SECTION
 ========================================================= */
 
-.submit-section {
+.create-section {
     background: #ffffff;
 
-    border: 1px solid #f0eef8;
+    border: 1px solid #e8e4f5;
 
     border-radius: 18px;
 
-    padding: 19px 22px 17px;
+    padding: 22px 26px 20px;
 
     box-shadow:
-        0 8px 30px rgba(72, 50, 145, 0.055);
+        0 8px 24px rgba(91, 61, 245, 0.045);
 
     text-align: center;
 }
@@ -1083,10 +624,12 @@ svg {
    CREATE BUTTON
 ========================================================= */
 
-.create-btn {
+.create-button {
+    position: relative;
+
     width: 100%;
 
-    height: 65px;
+    height: 62px;
 
     border: none;
 
@@ -1094,9 +637,9 @@ svg {
 
     background:
         linear-gradient(
-            100deg,
+            90deg,
             #5030d9,
-            #714cf3
+            #7654f4
         );
 
     color: #ffffff;
@@ -1107,274 +650,123 @@ svg {
 
     justify-content: center;
 
-    gap: 13px;
-
-    font-size: 17px;
+    font-size: 16.5px;
 
     font-weight: 600;
 
     box-shadow:
-        0 8px 18px rgba(84, 54, 221, 0.23);
+        0 8px 20px rgba(91, 61, 245, .24);
 
-    transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease;
+    cursor: pointer;
 }
 
-.create-btn svg {
-    width: 25px;
-    height: 25px;
-
-    stroke-width: 1.8;
-}
-
-.create-btn .arrow {
+.create-arrow {
     position: absolute;
 
-    right: 45px;
+    right: 26px;
 
-    width: 27px;
+    width: 22px;
 
-    height: 27px;
+    height: 22px;
+
+    fill: none;
+
+    stroke: currentColor;
+
+    stroke-width: 2;
 }
 
-.create-btn:hover {
-    transform: translateY(-1px);
+.create-section p {
+    margin-top: 14px;
 
-    box-shadow:
-        0 11px 24px rgba(84, 54, 221, 0.28);
-}
+    color: #777391;
 
-
-/* =========================================================
-   BOTTOM HINT
-========================================================= */
-
-.submit-section p {
-    margin-top: 13px;
-
-    color: #79758f;
-
-    font-size: 12.5px;
-
-    font-weight: 400;
+    font-size: 13px;
 }
 
 
 /* =========================================================
-   TABLET
+   RESPONSIVE
 ========================================================= */
 
 @media (max-width: 900px) {
 
-    .main-container,
-    .topbar-inner {
-        width: 92%;
-    }
-
-    .hero {
-        padding-left: 10px;
-    }
-
-    .hero-art {
-        opacity: 0.7;
-
-        right: -50px;
+    .destination-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
     }
 
     .form-row {
-        grid-template-columns: 55px 160px minmax(0, 1fr);
+        grid-template-columns:
+            160px
+            1fr;
 
-        column-gap: 20px;
+        column-gap: 18px;
     }
-
-    .suggestion-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
 }
 
 
-/* =========================================================
-   MOBILE
-========================================================= */
-
 @media (max-width: 650px) {
 
-    .topbar {
-        height: 70px;
+    .navbar-right {
+        gap: 18px;
     }
 
-    .brand {
-        font-size: 18px;
-    }
-
-    .brand-icon {
-        width: 32px;
-        height: 32px;
-    }
-
-    .brand-icon svg {
-        width: 32px;
-        height: 32px;
-    }
-
-    .profile-name,
-    .profile-arrow {
+    .notifications-link {
         display: none;
-    }
-
-    .topbar-right {
-        gap: 6px;
-    }
-
-    .main-container {
-        width: 94%;
-
-        padding-top: 25px;
-    }
-
-    .hero {
-        height: auto;
-
-        min-height: 150px;
-
-        padding-left: 4px;
-
-        align-items: flex-start;
     }
 
     .hero h1 {
         font-size: 30px;
     }
 
-    .hero p {
-        max-width: 500px;
-
-        font-size: 13px;
-    }
-
-    .hero-art {
-        width: 280px;
-
-        right: -70px;
-
-        top: 35px;
-
-        opacity: 0.35;
-    }
-
-    .form-panel {
-        padding: 16px 18px;
+    .trip-card {
+        padding: 20px;
     }
 
     .form-row {
-        grid-template-columns: 45px 1fr;
-
-        column-gap: 13px;
+        grid-template-columns: 1fr;
 
         row-gap: 10px;
 
-        padding: 15px 0;
+        padding: 16px 0;
     }
 
-    .form-row label {
-        grid-column: 2;
+    .suggestions-card {
+        padding: 20px;
     }
 
-    .row-icon {
-        width: 45px;
-        height: 45px;
-
-        grid-row: 1 / span 2;
-    }
-
-    .input-box {
-        grid-column: 1 / -1;
-
-        height: 58px;
-    }
-
-    .suggestions-panel {
-        padding: 20px 15px;
-    }
-
-    .suggestions-title h2 {
-        font-size: 14px;
-    }
-
-    .suggestions-header {
-        align-items: flex-start;
-    }
-
-    .see-all {
-        height: 42px;
-
-        padding: 0 12px;
-    }
-
-    .suggestion-grid {
+    .destination-grid {
         grid-template-columns: 1fr;
     }
 
-    .tile {
-        height: 205px;
-    }
-
-    .create-btn .arrow {
-        right: 25px;
-    }
-
-}
-
-
-/* =========================================================
-   SMALL MOBILE
-========================================================= */
-
-@media (max-width: 420px) {
-
-    .hero h1 {
-        font-size: 26px;
-    }
-
-    .sparkle {
-        font-size: 22px;
-    }
-
-    .hero p {
-        font-size: 12px;
-    }
-
-    .suggestions-title {
-        gap: 9px;
-    }
-
-    .compass-icon {
-        width: 40px;
-        height: 40px;
-    }
-
-    .suggestions-title h2 {
-        font-size: 13px;
-    }
-
-    .see-all {
-        font-size: 11px;
-    }
-
-    .submit-section {
+    .create-section {
         padding: 15px;
     }
 
-    .create-btn {
-        height: 58px;
+    .create-button {
+        height: 56px;
 
         font-size: 15px;
     }
+}
 
-    .create-btn .arrow {
-        right: 18px;
+
+@media (max-width: 420px) {
+
+    .logo {
+        font-size: 19px;
     }
 
+    .hero h1 {
+        font-size: 25px;
+    }
+
+    .suggestions-title h2 {
+        font-size: 15px;
+    }
+
+    .see-all span {
+        display: none;
+    }
 }

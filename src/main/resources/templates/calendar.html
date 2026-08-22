@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendar View</title>
+    <link rel="stylesheet" th:href="@{/css/common.css}">
+    <link rel="stylesheet" th:href="@{/css/calendar.css}">
+</head>
+<body>
+<div class="app-frame calendar-frame">
+    <div class="topbar">
+        <a class="app-title-link" th:href="@{/home}">GlobalTrotter</a>
+        <a class="icon-circle" th:href="@{/profile}" title="Profile"></a>
+    </div>
+
+
+    <form class="toolbar" method="get" th:action="@{/trips}">
+        <label class="sr-only" for="calendar-search">Search your trips</label>
+        <input class="field search-field" id="calendar-search" type="text" placeholder="Search for .....">
+        <button class="btn-outline" type="button">Group by</button>
+        <button class="btn-outline" type="submit">View all trips</button>
+    </form>
+
+    <div class="calendar-title">Calendar View</div>
+
+    <div class="calendar-card">
+        <div class="calendar-nav">
+            <a class="calendar-arrow" th:href="@{/calendar(year=${prevYear}, month=${prevMonth})}">&larr;</a>
+            <span class="calendar-month" th:text="${monthLabel}"></span>
+            <a class="calendar-arrow" th:href="@{/calendar(year=${nextYear}, month=${nextMonth})}">&rarr;</a>
+        </div>
+
+        <div class="calendar-grid calendar-weekdays">
+            <span>SUN</span><span>MON</span><span>TUE</span><span>WED</span>
+            <span>THU</span><span>FRI</span><span>SAT</span>
+        </div>
+
+        <div class="calendar-grid">
+            <div class="calendar-cell" th:each="day : ${days}"
+                 th:classappend="${day.blank} ? 'calendar-cell-blank' : (${day.hasTrips} ? 'calendar-cell-trip' : '')">
+                <span class="calendar-day-number" th:if="${!day.blank}" th:text="${day.dayOfMonth}"></span>
+                <span class="calendar-trip-label" th:if="${day.hasTrips}" th:text="${day.trips[0]}"></span>
+            </div>
+        </div>
+    </div>
+</div>
+<script th:src="@{/js/common.js}"></script>
+</body>
+</html>

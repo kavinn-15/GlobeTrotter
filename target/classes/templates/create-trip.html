@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create a new Trip</title>
+    <link rel="stylesheet" th:href="@{/css/common.css}">
+    <link rel="stylesheet" th:href="@{/css/create-trip.css}">
+</head>
+<body>
+<div class="app-frame">
+    <div class="topbar">
+        <a class="app-title-link" th:href="@{/home}">GlobalTrotter</a>
+        <a class="icon-circle" th:href="@{/profile}" title="Profile"></a>
+    </div>
+
+
+    <div class="panel-title">Plan a new trip</div>
+
+    <form th:action="@{/trips/new}" method="post">
+        <div class="form-panel">
+            <div class="form-row">
+                <label for="place">Select a Place :</label>
+                <input class="field" id="place" type="text" name="place" placeholder="Search a place">
+                <a class="btn-outline" th:href="@{/activities}">Search</a>
+            </div>
+            <div class="form-row">
+                <label>Start Date:</label>
+                <input class="field" type="date" name="startDate">
+            </div>
+            <div class="form-row">
+                <label>End Date:</label>
+                <input class="field" type="date" name="endDate">
+            </div>
+        </div>
+
+        <div class="section-label">Suggestion for Places to Visit/Activites to preform</div>
+        <div class="suggestion-grid">
+            <a class="tile" th:each="i : ${#numbers.sequence(1, 6)}" th:href="@{/activities}"></a>
+        </div>
+
+        <div class="submit-row">
+            <button class="btn" type="submit">Build Itinerary &rarr;</button>
+        </div>
+    </form>
+</div>
+<script th:src="@{/js/common.js}"></script>
+</body>
+</html>

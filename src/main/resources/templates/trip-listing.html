@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Trip Listing</title>
+    <link rel="stylesheet" th:href="@{/css/common.css}">
+    <link rel="stylesheet" th:href="@{/css/trip-listing.css}">
+</head>
+<body>
+<div class="app-frame">
+    <div class="topbar">
+        <a class="app-title-link" th:href="@{/home}">GlobalTrotter</a>
+        <a class="icon-circle" th:href="@{/profile}" title="Profile"></a>
+    </div>
+
+
+    <form class="toolbar" method="get" th:action="@{/activities}">
+        <label class="sr-only" for="trips-search">Search your trips</label>
+        <input class="field search-field" id="trips-search" type="text" name="query" placeholder="Search for .....">
+        <button class="btn-outline" type="button">Group by</button>
+        <button class="btn-outline" type="button">Filter</button>
+        <button class="btn-outline" type="submit">Sort by...</button>
+    </form>
+
+    <div class="trip-group">
+        <div class="section-label">Ongoing</div>
+        <a class="trip-card" th:each="trip : ${ongoingTrips}" th:href="@{/trips/view(tripId=${trip.id})}"
+           th:text="${trip.place} + ' &#8226; ' + ${trip.startDate} + ' to ' + ${trip.endDate}"></a>
+        <div class="trip-empty" th:if="${#lists.isEmpty(ongoingTrips)}">No ongoing trips right now.</div>
+    </div>
+
+    <div class="trip-group">
+        <div class="section-label">Up-coming</div>
+        <a class="trip-card" th:each="trip : ${upcomingTrips}" th:href="@{/trips/view(tripId=${trip.id})}"
+           th:text="${trip.place} + ' &#8226; ' + ${trip.startDate} + ' to ' + ${trip.endDate}"></a>
+        <div class="trip-empty" th:if="${#lists.isEmpty(upcomingTrips)}">No up-coming trips yet &mdash; plan one from the home screen.</div>
+    </div>
+
+    <div class="trip-group">
+        <div class="section-label">Completed</div>
+        <a class="trip-card" th:each="trip : ${completedTrips}" th:href="@{/trips/view(tripId=${trip.id})}"
+           th:text="${trip.place} + ' &#8226; ' + ${trip.startDate} + ' to ' + ${trip.endDate}"></a>
+        <div class="trip-empty" th:if="${#lists.isEmpty(completedTrips)}">No completed trips yet.</div>
+    </div>
+</div>
+<script th:src="@{/js/common.js}"></script>
+</body>
+</html>

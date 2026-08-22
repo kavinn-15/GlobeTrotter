@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link rel="stylesheet" th:href="@{/css/common.css}">
+    <link rel="stylesheet" th:href="@{/css/profile.css}">
+</head>
+<body>
+<div class="app-frame">
+    <div class="topbar">
+        <a class="app-title-link" th:href="@{/home}">GlobalTrotter</a>
+        <a class="logout-link" th:href="@{/logout}">Logout</a>
+    </div>
+
+
+    <div class="profile-header">
+        <div class="photo-circle">
+            <img th:if="${user.photoPath}" th:src="@{'/uploads/' + ${user.photoPath}}" alt="profile photo">
+            <span th:unless="${user.photoPath}">Image of the User</span>
+        </div>
+        <div class="profile-details">
+            <div><span>Username:</span> <span th:text="${user.username}"></span></div>
+            <div><span>Name:</span> <span th:text="${user.firstName} + ' ' + ${user.lastName}"></span></div>
+            <div><span>Email:</span> <span th:text="${user.email}"></span></div>
+            <div><span>Phone:</span> <span th:text="${user.phoneNumber}"></span></div>
+            <div><span>City:</span> <span th:text="${user.city}"></span></div>
+            <div><span>Country:</span> <span th:text="${user.country}"></span></div>
+        </div>
+    </div>
+
+    <div class="section-label">Preplanned Trips</div>
+    <div class="mini-trip-grid">
+        <div class="mini-trip-card" th:each="i : ${#numbers.sequence(1, 3)}">
+            <button class="btn-outline" type="button">View</button>
+        </div>
+    </div>
+
+    <div class="section-label">Previous Trips</div>
+    <div class="mini-trip-grid">
+        <div class="mini-trip-card" th:each="i : ${#numbers.sequence(1, 3)}">
+            <button class="btn-outline" type="button">View</button>
+        </div>
+    </div>
+</div>
+<script th:src="@{/js/common.js}"></script>
+</body>
+</html>
