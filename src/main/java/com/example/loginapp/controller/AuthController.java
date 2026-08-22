@@ -138,6 +138,20 @@ public class AuthController {
     }
 
     // ---------------------------------------------------------------
+    // Screen 7: User Profile Page
+    // ---------------------------------------------------------------
+
+    @GetMapping("/profile")
+    public String profile(HttpSession session, Model model) {
+        User loggedInUser = (User) session.getAttribute("loggedInUser");
+        if (loggedInUser == null) {
+            return "redirect:/login";
+        }
+        model.addAttribute("user", loggedInUser);
+        return "profile";
+    }
+
+    // ---------------------------------------------------------------
     // Helpers
     // ---------------------------------------------------------------
 

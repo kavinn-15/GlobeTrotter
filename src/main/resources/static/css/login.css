@@ -1,9 +1,44 @@
-/* ===================================================================
-   login.css
-   Screen 1 (Login) only. Shared atoms (.card, .photo-circle, .field,
-   .btn, .alert, .link-row, ...) live in common.css.
-   =================================================================== */
+/* login.css — Screen 1, built on common.css tokens */
 
 .login-card {
-    width: 320px;
+    width: 380px;
+    max-width: 90vw;
+    animation: card-float 0.6s cubic-bezier(.2, .85, .3, 1.05);
+}
+
+@keyframes card-float {
+    from { opacity: 0; transform: translateY(24px) rotateX(6deg); }
+    to   { opacity: 1; transform: translateY(0) rotateX(0); }
+}
+
+.login-card .screen-title {
+    margin-bottom: 0;
+}
+
+.forgot-row {
+    text-align: right;
+    margin: -6px 0 4px;
+}
+.forgot-row a {
+    font-size: 0.8rem;
+    color: var(--ink-faint);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: color 0.2s ease, border-color 0.2s ease;
+}
+.forgot-row a:hover {
+    color: var(--mint);
+    border-color: rgba(107, 241, 199, 0.4);
+}
+
+.login-brand {
+    text-align: center;
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    color: var(--ink);
+    margin-bottom: 18px;
+    letter-spacing: 0.3px;
+}
+.login-brand::before {
+    content: "\2708\FE0F  ";
 }

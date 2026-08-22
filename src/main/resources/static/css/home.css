@@ -1,44 +1,89 @@
-/* ===================================================================
-   home.css
-   Screen 3 (Main Landing Page) only. Shared shell (.app-frame,
-   .topbar, .section-label, .tile, ...) lives in common.css.
-   =================================================================== */
+/* home.css — Screen 3, built on common.css tokens */
 
-.banner {
-    margin: 0 20px 16px;
-    height: 150px;
-    border: 1px solid #6a6a6a;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.3rem;
-    color: #d5d5d5;
-}
-
-.toolbar {
+.nav-row {
     display: flex;
     gap: 10px;
-    margin: 0 20px 20px;
-    align-items: center;
+    flex-wrap: wrap;
+    margin: 0 22px 18px;
 }
 
-.search-field {
-    margin-bottom: 0;
-    flex: 1;
+/* ---- hero banner: layered sunset + parallax skyline + plane ---- */
+.banner {
+    margin: 0 22px 20px;
+    height: 168px;
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-md);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding-bottom: 14px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    font-family: var(--font-display);
+    color: var(--sand);
+    background: linear-gradient(180deg, #123a63 0%, #1f7a8c 45%, #ff9f1c 85%, #ff6b6b 100%);
+    box-shadow: var(--shadow-deep);
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
+}
+
+.banner::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 30px;
+    width: 90px;
+    height: 90px;
+    background: radial-gradient(circle, #ffe9b0, #ffd166 60%, transparent 72%);
+    border-radius: 50%;
+    transform: translateX(-50%);
+    filter: blur(0.5px);
+    animation: sun-pulse 4s ease-in-out infinite;
+}
+
+@keyframes sun-pulse {
+    0%, 100% { transform: translateX(-50%) scale(1); opacity: 0.95; }
+    50% { transform: translateX(-50%) scale(1.06); opacity: 1; }
+}
+
+.banner::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(transparent 60%, rgba(10, 26, 48, 0.55) 100%),
+        polygon-mountains;
+    background:
+        linear-gradient(transparent 55%, rgba(10, 26, 48, 0.5) 100%);
+}
+
+.banner-skyline {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 55%;
+    opacity: 0.85;
+}
+
+.banner span.banner-label {
+    position: relative;
+    z-index: 2;
+    letter-spacing: 0.4px;
 }
 
 .tile-row {
     display: flex;
     gap: 12px;
-    margin: 0 20px 24px;
+    margin: 0 22px 26px;
     flex-wrap: wrap;
 }
 
 .plan-trip-row {
     display: flex;
     justify-content: flex-end;
-    margin: 0 20px;
+    margin: 0 22px;
 }
 
 .plan-trip-row a.btn {

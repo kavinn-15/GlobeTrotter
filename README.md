@@ -19,16 +19,24 @@ A small full-stack Java web app implementing the two wireframe screens
 src/main/java/com/example/loginapp/
   LoginRegisterApplication.java   # main() / @SpringBootApplication
   controller/AuthController.java  # /login, /register, /home, /logout
+  controller/TripController.java  # /trips, /trips/new, /trips/itinerary, /trips/view, /calendar
+  controller/CommunityController.java # /community (Screen 10)
+  controller/AdminController.java # /admin (Screen 12, admin users only)
   entity/User.java                # JPA entity (Hibernate)
+  entity/Trip.java                # JPA entity for planned trips
+  entity/CommunityPost.java       # JPA entity for community shares
   repository/UserRepository.java  # Spring Data JPA repository
+  repository/TripRepository.java
+  repository/CommunityPostRepository.java
   service/UserService.java        # business logic (Spring bean)
   servlet/VisitCounterServlet.java# plain Servlet example -> GET /visits
   config/WebConfig.java           # serves uploaded photos from /uploads/**
 src/main/resources/
   application.properties
-  templates/login.html
-  templates/register.html
-  templates/home.html
+  templates/login.html, register.html, home.html, ...
+  templates/community.html        # Screen 10
+  templates/calendar.html         # Screen 11
+  templates/admin.html            # Screen 12
   static/css/style.css
 ```
 
@@ -75,7 +83,25 @@ Then open:
 
 - http://localhost:8080/login     — Login screen
 - http://localhost:8080/register  — Registration screen
+- http://localhost:8080/trips     — User Trip Listing (Screen 6)
+- http://localhost:8080/calendar  — Calendar View of your trips (Screen 11)
+- http://localhost:8080/community — Community tab, share & browse trips (Screen 10)
+- http://localhost:8080/admin     — Admin Panel (Screen 12, admin users only)
 - http://localhost:8080/visits    — plain-Servlet demo endpoint
+
+### Making a user an admin
+
+There's no sign-up flow for admins on purpose. After registering normally,
+promote your account directly in the database:
+
+```sql
+UPDATE users SET admin = true WHERE username = 'your_username';
+```
+
+Once promoted, an "Admin Panel" link appears on the home screen and
+`/admin` becomes reachable (any other logged-in user is redirected back to
+`/home` if they try to visit it).
+
 
 You can inspect the data with any MySQL client (MySQL Workbench, DBeaver,
 `mysql` CLI, etc.) pointed at the `loginappdb` database, table `users`.

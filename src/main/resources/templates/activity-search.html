@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Activity / City Search</title>
+    <link rel="stylesheet" th:href="@{/css/common.css}">
+    <link rel="stylesheet" th:href="@{/css/activity-search.css}">
+</head>
+<body>
+<div class="app-frame">
+    <div class="topbar">
+        <a class="app-title-link" th:href="@{/home}">GlobalTrotter</a>
+        <a class="icon-circle" th:href="@{/profile}" title="Profile"></a>
+    </div>
+
+
+    <div class="toolbar">
+        <form method="get" th:action="@{/activities}" style="display:flex; gap:10px; flex:1; align-items:center;">
+            <label class="sr-only" for="activity-query">Search activities or cities</label>
+            <input class="field search-field" id="activity-query" type="text" name="query"
+                   placeholder="Search activities or cities...." th:value="${query}" autocomplete="off">
+            <button class="btn-outline" type="button">Group by</button>
+            <button class="btn-outline" type="button">Filter</button>
+            <button class="btn-outline" type="button">Sort by...</button>
+        </form>
+    </div>
+
+    <div class="section-label">Results</div>
+
+    <div class="results-list">
+        <a class="result-card" th:each="i : ${#numbers.sequence(1, 7)}"
+           th:href="@{/trips/view(option=${i})}">
+            Option and its details
+        </a>
+    </div>
+</div>
+<script th:src="@{/js/common.js}"></script>
+</body>
+</html>

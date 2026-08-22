@@ -1,29 +1,34 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" th:href="@{/css/common.css}">
     <link rel="stylesheet" th:href="@{/css/login.css}">
 </head>
 <body>
-
-
-    
 <div>
-    <h2 class="screen-title">Login Screen&nbsp;&nbsp;(Screen 1)</h2>
 
     <div class="card login-card">
 
         <div class="photo-circle">Photo</div>
 
-        <div th:if="${loginError}" class="alert alert-error" th:text="${loginError}"></div>
-        <div th:if="${registerSuccess}" class="alert alert-success" th:text="${registerSuccess}"></div>
+        <div th:if="${loginError}" class="alert alert-error" role="alert" th:text="${loginError}"></div>
+        <div th:if="${registerSuccess}" class="alert alert-success" role="status" th:text="${registerSuccess}"></div>
 
         <form th:action="@{/login}" method="post">
-            <input class="field" type="text" name="username" placeholder="Username"
-                   th:value="${username}" required autofocus>
-            <input class="field" type="password" name="password" placeholder="Password" required>
+            <label class="sr-only" for="username">Username</label>
+            <input class="field" id="username" type="text" name="username" placeholder="Username"
+                   th:value="${username}" autocomplete="username" required autofocus>
+
+            <label class="sr-only" for="password">Password</label>
+            <input class="field" id="password" type="password" name="password" placeholder="Password"
+                   autocomplete="current-password" required>
+
+            <div class="forgot-row">
+                <a th:href="@{/forgot-password}">Forgot password?</a>
+            </div>
 
             <button class="btn" type="submit">Login Button</button>
         </form>
@@ -33,5 +38,6 @@
         </div>
     </div>
 </div>
+<script th:src="@{/js/common.js}"></script>
 </body>
 </html>

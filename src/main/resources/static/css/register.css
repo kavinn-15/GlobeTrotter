@@ -1,47 +1,51 @@
-/* ===================================================================
-   register.css
-   Screen 2 (Registration) only. Shared atoms (.card, .photo-circle,
-   .field, .btn, .alert, .field-error, ...) live in common.css.
-   =================================================================== */
+/* register.css — Screen 2, built on common.css tokens */
 
 .register-card {
-    width: 640px;
+    width: 480px;
     max-width: 92vw;
+    animation: card-float 0.6s cubic-bezier(.2, .85, .3, 1.05);
+}
+
+@keyframes card-float {
+    from { opacity: 0; transform: translateY(24px) rotateX(6deg); }
+    to   { opacity: 1; transform: translateY(0) rotateX(0); }
 }
 
 .photo-upload-label {
-    cursor: pointer;
-    text-align: center;
     display: block;
+    cursor: pointer;
+    width: fit-content;
+    margin: 0 auto;
 }
-
 .photo-upload-label input[type="file"] {
-    display: none;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+    overflow: hidden;
 }
 
 .photo-hint {
     text-align: center;
-    font-size: 0.75rem;
-    color: #8a8a8a;
-    margin: -16px 0 20px;
+    font-size: 0.72rem;
+    color: var(--ink-faint);
+    margin: -18px 0 20px;
 }
 
 .inner-panel {
-    border: 1px solid #6a6a6a;
-    border-radius: 12px;
-    padding: 20px;
+    background: var(--glass);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-md);
+    padding: 18px;
+    margin-bottom: 4px;
 }
 
 .row {
     display: flex;
-    gap: 16px;
+    gap: 12px;
 }
+.row .field { flex: 1; min-width: 0; }
 
-.row .field {
-    flex: 1;
-}
-
-textarea.field {
-    resize: vertical;
-    min-height: 100px;
+@media (max-width: 480px) {
+    .row { flex-direction: column; gap: 0; }
 }

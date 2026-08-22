@@ -5,6 +5,8 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
+import java.time.LocalDateTime;
+
 /**
  * JPA entity mapped by Hibernate to the USERS table.
  * Backs both the Login screen (username / password) and the
@@ -50,7 +52,43 @@ public class User {
     /** relative path (under /uploads) to the uploaded profile photo, may be null */
     private String photoPath;
 
+    /**
+     * Grants access to the Admin Panel (Screen 12). Defaults to false for
+     * every new registration; promote a user by setting this column to true
+     * directly in the database (e.g. {@code UPDATE users SET admin = true
+     * WHERE username = '...'; }).
+     */
+    @Column(nullable = false)
+    private boolean admin = false;
+
+    /** Set automatically the first time this row is persisted. */
+    private LocalDateTime createdAt;
+
+    // ---------------------------------------------------------------
+    // Forgot Password / OTP verification (Screens: Forgot Password,
+    // Verify OTP, Reset Password). Not shown anywhere in the UI other
+    // than driving that flow.
+    // ---------------------------------------------------------------
+
+    /** The most recently generated one-time code, cleared once used. */
+    private String resetOtp;
+
+    /** Moment after which {@link #resetOtp} is no longer valid. */
+    private LocalDateTime resetOtpExpiry;
+
+    /** Number of consecutive failed OTP attempts for the current code. */
+    private int resetOtpAttempts = 0;
+
+    /** True once the OTP has been correctly verified; required before
+     *  a new password may be set, then cleared immediately after. */
+    private boolean resetVerified = false;
+
     public User() {
+    }
+
+    @PrePersist
+    protected void onCreate() {
+        this.createdAt = LocalDateTime.now();
     }
 
     // ---------- Getters & Setters ----------
@@ -141,5 +179,53 @@ public class User {
 
     public void setPhotoPath(String photoPath) {
         this.photoPath = photoPath;
+    }
+
+    public boolean isAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(boolean admin) {
+        this.admin = admin;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public String getResetOtp() {
+        return resetOtp;
+    }
+
+    public void setResetOtp(String resetOtp) {
+        this.resetOtp = resetOtp;
+    }
+
+    public LocalDateTime getResetOtpExpiry() {
+        return resetOtpExpiry;
+    }
+
+    public void setResetOtpExpiry(LocalDateTime resetOtpExpiry) {
+        this.resetOtpExpiry = resetOtpExpiry;
+    }
+
+    public int getResetOtpAttempts() {
+        return resetOtpAttempts;
+    }
+
+    public void setResetOtpAttempts(int resetOtpAttempts) {
+        this.resetOtpAttempts = resetOtpAttempts;
+    }
+
+    public boolean isResetVerified() {
+        return resetVerified;
+    }
+
+    public void setResetVerified(boolean resetVerified) {
+        this.resetVerified = resetVerified;
     }
 }
