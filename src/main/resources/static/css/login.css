@@ -1,9 +1,0 @@
-/* ===================================================================
-   login.css
-   Screen 1 (Login) only. Shared atoms (.card, .photo-circle, .field,
-   .btn, .alert, .link-row, ...) live in common.css.
-   =================================================================== */
-
-.login-card {
-    width: 320px;
-}
