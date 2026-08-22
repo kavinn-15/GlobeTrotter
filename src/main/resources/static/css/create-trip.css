@@ -1,0 +1,55 @@
+/* ===================================================================
+   create-trip.css
+   Screen 4 (Create a new Trip) only. Shared shell (.app-frame,
+   .topbar, .section-label, .tile, .field, .btn, ...) lives in
+   common.css.
+   =================================================================== */
+
+.panel-title {
+    padding: 0 20px;
+    margin: 16px 0 14px;
+    font-size: 0.95rem;
+    color: #eaeaea;
+}
+
+.form-panel {
+    margin: 0 20px 4px;
+}
+
+.form-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+}
+
+.form-row label {
+    width: 110px;
+    flex: 0 0 auto;
+    font-size: 0.85rem;
+    color: #cfcfcf;
+}
+
+.form-row .field {
+    margin-bottom: 0;
+}
+
+.suggestion-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin: 0 20px 22px;
+}
+
+.suggestion-grid .tile {
+    width: 100%;
+    height: 90px;
+}
+
+.submit-row {
+    margin: 0 20px;
+}
+
+.submit-row .btn {
+    width: 100%;
+}

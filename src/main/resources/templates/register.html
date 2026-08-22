@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+    <link rel="stylesheet" th:href="@{/css/common.css}">
+    <link rel="stylesheet" th:href="@{/css/register.css}">
+</head>
+<body>
+<div>
+    <h2 class="screen-title">Registration Screen&nbsp;&nbsp;(Screen 2)</h2>
+
+    <div class="card register-card">
+
+        <label class="photo-upload-label">
+            <div class="photo-circle">Photo</div>
+            <input type="file" name="photo" accept="image/*" form="registerForm">
+        </label>
+        <div class="photo-hint">(optional) click the circle above to choose a profile photo</div>
+
+        <div th:if="${registerError}" class="alert alert-error" th:text="${registerError}"></div>
+
+        <form id="registerForm" th:action="@{/register}" th:object="${user}" method="post" enctype="multipart/form-data">
+
+            <div class="inner-panel">
+
+                <div class="row">
+                    <input class="field" type="text" th:field="*{username}" placeholder="Username" required>
+                    <input class="field" type="password" th:field="*{password}" placeholder="Password" required>
+                </div>
+                <div class="field-error" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
+                <div class="field-error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+
+                <div class="row">
+                    <input class="field" type="text" th:field="*{firstName}" placeholder="First Name" required>
+                    <input class="field" type="text" th:field="*{lastName}" placeholder="Last Name" required>
+                </div>
+                <div class="field-error" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></div>
+                <div class="field-error" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></div>
+
+                <div class="row">
+                    <input class="field" type="email" th:field="*{email}" placeholder="Email Address" required>
+                    <input class="field" type="text" th:field="*{phoneNumber}" placeholder="Phone Number">
+                </div>
+                <div class="field-error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+
+                <div class="row">
+                    <input class="field" type="text" th:field="*{city}" placeholder="City">
+                    <input class="field" type="text" th:field="*{country}" placeholder="Country">
+                </div>
+
+                <textarea class="field" th:field="*{additionalInfo}" placeholder="Additional Information ...."></textarea>
+            </div>
+
+            <button class="btn" type="submit">Register Users</button>
+        </form>
+
+        <div class="link-row">
+            Already have an account? <a th:href="@{/login}">Log in</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

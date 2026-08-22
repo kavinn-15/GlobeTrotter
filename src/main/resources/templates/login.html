@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" th:href="@{/css/common.css}">
+    <link rel="stylesheet" th:href="@{/css/login.css}">
+</head>
+<body>
+<div>
+    <h2 class="screen-title">Login Screen&nbsp;&nbsp;(Screen 1)</h2>
+
+    <div class="card login-card">
+
+        <div class="photo-circle">Photo</div>
+
+        <div th:if="${loginError}" class="alert alert-error" th:text="${loginError}"></div>
+        <div th:if="${registerSuccess}" class="alert alert-success" th:text="${registerSuccess}"></div>
+
+        <form th:action="@{/login}" method="post">
+            <input class="field" type="text" name="username" placeholder="Username"
+                   th:value="${username}" required autofocus>
+            <input class="field" type="password" name="password" placeholder="Password" required>
+
+            <button class="btn" type="submit">Login Button</button>
+        </form>
+
+        <div class="link-row">
+            No account yet? <a th:href="@{/register}">Register here</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

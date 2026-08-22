@@ -1,0 +1,58 @@
+/* ===================================================================
+   build-itinerary.css
+   Screen 5 (Build Itinerary) only. Shared shell (.app-frame,
+   .topbar, .field, .btn-outline, ...) lives in common.css.
+   =================================================================== */
+
+.itinerary-section {
+    position: relative;
+    border: 1px solid #6a6a6a;
+    border-radius: 10px;
+    padding: 16px 18px;
+    margin: 0 20px 16px;
+}
+
+.itinerary-section h3 {
+    margin: 0 0 6px;
+    font-size: 0.95rem;
+    font-weight: 400;
+}
+
+.itinerary-section p {
+    margin: 0 0 14px;
+    font-size: 0.8rem;
+    color: #a5a5a5;
+    line-height: 1.4;
+}
+
+.itinerary-row {
+    display: flex;
+    gap: 12px;
+}
+
+.itinerary-row .field {
+    margin-bottom: 0;
+    flex: 1;
+}
+
+.add-section-row {
+    margin: 4px 20px 0;
+}
+
+.add-section-row .btn-outline {
+    width: 100%;
+}
+
+.remove-section {
+    position: absolute;
+    top: 14px;
+    right: 16px;
+    background: none;
+    border: none;
+    color: #d16565;
+    font-size: 0.75rem;
+    cursor: pointer;
+    text-decoration: underline;
+    font-family: inherit;
+    padding: 0;
+}

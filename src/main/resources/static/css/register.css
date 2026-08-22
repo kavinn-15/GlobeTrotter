@@ -1,0 +1,47 @@
+/* ===================================================================
+   register.css
+   Screen 2 (Registration) only. Shared atoms (.card, .photo-circle,
+   .field, .btn, .alert, .field-error, ...) live in common.css.
+   =================================================================== */
+
+.register-card {
+    width: 640px;
+    max-width: 92vw;
+}
+
+.photo-upload-label {
+    cursor: pointer;
+    text-align: center;
+    display: block;
+}
+
+.photo-upload-label input[type="file"] {
+    display: none;
+}
+
+.photo-hint {
+    text-align: center;
+    font-size: 0.75rem;
+    color: #8a8a8a;
+    margin: -16px 0 20px;
+}
+
+.inner-panel {
+    border: 1px solid #6a6a6a;
+    border-radius: 12px;
+    padding: 20px;
+}
+
+.row {
+    display: flex;
+    gap: 16px;
+}
+
+.row .field {
+    flex: 1;
+}
+
+textarea.field {
+    resize: vertical;
+    min-height: 100px;
+}
