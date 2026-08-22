@@ -1,0 +1,220 @@
+/* ===================================================================
+   common.css
+   Global reset + base atoms shared by every screen (buttons, fields,
+   alerts, cards) plus the "app-frame" shell shared by Screens 3-5.
+   Every template links this FIRST, then its own screen-specific file.
+   =================================================================== */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background-color: #111111;
+    color: #f2f2f2;
+    font-family: 'Trebuchet MS', 'Segoe UI', Tahoma, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 16px;
+}
+
+.screen-title {
+    text-align: center;
+    font-weight: 400;
+    letter-spacing: 1px;
+    margin-bottom: 18px;
+    color: #eaeaea;
+}
+
+/* ---------- form fields ---------- */
+
+.field {
+    width: 100%;
+    background-color: #111111;
+    border: 1px solid #8a8a8a;
+    border-radius: 8px;
+    color: #f2f2f2;
+    padding: 12px 14px;
+    margin-bottom: 16px;
+    font-size: 0.95rem;
+    font-family: inherit;
+}
+
+.field::placeholder {
+    color: #9a9a9a;
+}
+
+.field:focus {
+    outline: none;
+    border-color: #f2f2f2;
+}
+
+.field-error {
+    color: #f0a9a9;
+    font-size: 0.75rem;
+    margin: -12px 0 12px;
+}
+
+/* ---------- buttons ---------- */
+
+.btn {
+    display: block;
+    margin: 22px auto 0;
+    background-color: #111111;
+    border: 1px solid #8a8a8a;
+    color: #f2f2f2;
+    border-radius: 8px;
+    padding: 10px 26px;
+    font-size: 0.95rem;
+    cursor: pointer;
+    font-family: inherit;
+}
+
+.btn:hover {
+    background-color: #1e1e1e;
+    border-color: #f2f2f2;
+}
+
+.btn-outline {
+    background-color: #111111;
+    border: 1px solid #8a8a8a;
+    color: #f2f2f2;
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    font-family: inherit;
+    white-space: nowrap;
+}
+
+.btn-outline:hover {
+    background-color: #1e1e1e;
+    border-color: #f2f2f2;
+}
+
+/* ---------- links / alerts ---------- */
+
+.link-row {
+    text-align: center;
+    margin-top: 18px;
+    font-size: 0.85rem;
+    color: #b5b5b5;
+}
+
+.link-row a {
+    color: #f2f2f2;
+    text-decoration: underline;
+}
+
+.alert {
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 0.85rem;
+    margin-bottom: 16px;
+    text-align: center;
+}
+
+.alert-error {
+    border: 1px solid #d16565;
+    color: #f0a9a9;
+}
+
+.alert-success {
+    border: 1px solid #5fbf7a;
+    color: #a7e3b6;
+}
+
+/* ---------- card shell (Screens 1-2: login / register) ---------- */
+
+.card {
+    background-color: #111111;
+    border: 1px solid #6a6a6a;
+    border-radius: 14px;
+    padding: 28px 32px 34px;
+}
+
+.photo-circle {
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    border: 1px solid #8a8a8a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 24px;
+    font-size: 0.85rem;
+    color: #cfcfcf;
+    overflow: hidden;
+    position: relative;
+    background-color: #111111;
+}
+
+.photo-circle img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* ---------- app-frame shell (Screens 3-5: landing / trip / itinerary) --- */
+
+.app-frame {
+    width: 460px;
+    max-width: 94vw;
+    border: 1px solid #6a6a6a;
+    border-radius: 14px;
+    padding-bottom: 26px;
+    background-color: #111111;
+}
+
+.topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #6a6a6a;
+    padding: 14px 20px;
+}
+
+.app-title {
+    font-size: 1.05rem;
+    letter-spacing: 0.5px;
+}
+
+.icon-circle {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    border: 1px solid #b5b5b5;
+    display: inline-block;
+}
+
+.app-frame .screen-title {
+    padding: 0 20px;
+    margin: 16px 0 12px;
+    text-align: left;
+    font-size: 0.85rem;
+    color: #9a9a9a;
+}
+
+.section-label {
+    margin: 0 20px 12px;
+    font-size: 0.9rem;
+    color: #cfcfcf;
+    border-bottom: 1px solid #444;
+    padding-bottom: 6px;
+}
+
+.tile {
+    width: 70px;
+    height: 70px;
+    border: 1px solid #6a6a6a;
+    border-radius: 8px;
+    flex: 0 0 auto;
+}
+
+.tile-tall {
+    width: 110px;
+    height: 110px;
+}

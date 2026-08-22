@@ -1,0 +1,7 @@
+target/
+data/
+uploads/
+*.class
+.idea/
+*.iml
+.DS_Store
